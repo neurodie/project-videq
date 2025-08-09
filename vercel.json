@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/w/:code", "destination": "/watch.html?v=:code" },
+    { "source": "/f/:dir", "destination": "/folder.html?dir=:dir" }
+  ]
+}

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Watch — Lixstream</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://lixstream.com/favicon.ico"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial;
+      }
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+      }
+      @supports not (aspect-ratio: 16/9) {
+        .video-wrapper {
+          padding-bottom: 56.25%;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <div class="container mx-auto px-4 py-6 max-w-5xl">
+      <!-- Header -->
+      <header class="flex items-center justify-between mb-6">
+        <a href="/" class="text-2xl font-bold text-yellow-400">Lixstream</a>
+        <div class="flex items-center space-x-3">
+          <a
+            href="/"
+            id="backLink"
+            class="text-sm text-gray-300 hover:text-white transition"
+          >
+            ← Back
+          </a>
+        </div>
+      </header>
+
+      <!-- Adult Warning -->
+      <div
+        id="adultWarning"
+        class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4"
+      >
+        <div class="bg-gray-800 rounded-lg p-6 max-w-md w-full">
+          <h2 class="text-xl font-semibold mb-3">Adult Content Warning</h2>
+          <p class="text-gray-300 mb-6">
+            Konten ini mungkin mengandung materi dewasa. Kamu harus berusia 18+
+            untuk melanjutkan. Dengan melanjutkan, kamu setuju dengan
+            <a href="/terms-of-service" class="text-yellow-400 hover:underline"
+              >Terms of Service</a
+            >.
+          </p>
+          <div class="flex justify-between">
+            <a
+              href="/"
+              class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg"
+              >Keluar</a
+            >
+            <button
+              id="btnAdult"
+              class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg"
+            >
+              Saya 18+, Lanjut
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 id="title" class="text-lg font-semibold mb-3">Watch</h1>
+
+      <!-- Mirror selector -->
+      <div
+        class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between mb-3"
+      >
+        <div class="text-sm text-gray-300">
+          Server:
+          <select
+            id="mirrorSel"
+            class="bg-gray-800 border border-gray-700 rounded px-2 py-1"
+          >
+            <!-- mirrors injected by JS -->
+          </select>
+        </div>
+        <div>
+          <button
+            id="downloadBtn"
+            class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-full text-sm"
+          >
+            Download Video
+          </button>
+        </div>
+      </div>
+
+      <!-- Player -->
+      <div
+        id="playerWrap"
+        class="video-container relative bg-black rounded-lg overflow-hidden hidden"
+      >
+        <div class="video-wrapper">
+          <iframe
+            id="player"
+            src=""
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; encrypted-media; picture-in-picture"
+            class="w-full h-full"
+          ></iframe>
+        </div>
+        <div id="playerError" class="hidden text-center p-4">
+          <div class="text-red-400 text-base">Video gagal dimuat.</div>
+          <div class="text-gray-400 text-sm">
+            Coba ganti server di atas atau periksa koneksi.
+          </div>
+        </div>
+      </div>
+
+      <!-- Report -->
+      <div class="mt-4">
+        <a
+          href="#"
+          id="reportBtn"
+          class="px-4 py-2 rounded-full border border-gray-700 text-gray-300 hover:bg-gray-800 text-sm"
+        >
+          Report
+        </a>
+      </div>
+
+      <!-- Report Modal -->
+      <div
+        id="reportModal"
+        class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4"
+      >
+        <div class="bg-gray-800 rounded-lg p-6 max-w-md w-full relative">
+          <button
+            id="closeReport"
+            class="absolute right-4 top-2 text-2xl leading-none"
+          >
+            ×
+          </button>
+          <h2 class="text-xl font-semibold mb-4">Apa masalahnya?</h2>
+          <form id="reportForm" class="space-y-3">
+            <label class="flex items-center gap-2 text-sm"
+              ><input type="radio" name="reason" value="dislike" /> Saya tidak
+              suka</label
+            >
+            <label class="flex items-center gap-2 text-sm"
+              ><input type="radio" name="reason" value="hateful" /> Konten benci
+              / ofensif</label
+            >
+            <label class="flex items-center gap-2 text-sm"
+              ><input type="radio" name="reason" value="csam" /> CSAM</label
+            >
+            <label class="flex items-center gap-2 text-sm"
+              ><input type="radio" name="reason" value="illegal" />
+              Ilegal</label
+            >
+            <button
+              class="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg mt-2"
+            >
+              Kirim
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-8 text-center text-gray-400 text-sm">
+        <div class="mb-2">
+          Copyright © <span id="year"></span> TRUE DOMAIN PRIVACY, LLC
+        </div>
+        <div class="space-x-4">
+          <a href="/terms-of-service" class="hover:text-white transition"
+            >Terms of Service</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // ===== helpers =====
+      const qs = new URLSearchParams(location.search);
+      const seg = location.pathname.split("/").filter(Boolean);
+      const code = (qs.get("v") || (seg[0] === "w" && seg[1]) || "").trim();
+      const isCodeValid = /^[A-Za-z0-9]+$/.test(code);
+      const customTitle = (qs.get("t") || "").trim();
+      const mirrors = [
+        "videyb.com",
+        "vidcloudmv.com",
+        "teraboxtv.org",
+        "pooptv.me",
+        "doodbd.com",
+      ];
+      const siteName = "Lixstream";
+      const downloadCountdownStart = 20; // detik
+
+      const $ = (s) => document.querySelector(s);
+      const titleEl = $("#title");
+      const playerWrap = $("#playerWrap");
+      const player = $("#player");
+      const playerError = $("#playerError");
+      const mirrorSel = $("#mirrorSel");
+      const downloadBtn = $("#downloadBtn");
+      const adultWarning = $("#adultWarning");
+      const btnAdult = $("#btnAdult");
+      const reportBtn = $("#reportBtn");
+      const reportModal = $("#reportModal");
+      const closeReport = $("#closeReport");
+
+      // tahun footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+      // back link
+      const ref =
+        document.referrer && /^https?:\/\//i.test(document.referrer)
+          ? document.referrer
+          : "/";
+      document.getElementById("backLink").href = ref;
+
+      if (!isCodeValid) {
+        document.body.innerHTML = `
+        <div class="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+          <div class="text-center">
+            <div class="text-2xl font-bold mb-2">Parameter video tidak valid</div>
+            <div class="text-gray-400">Gunakan <code>?v=CODE</code> atau <code>/w/CODE</code></div>
+          </div>
+        </div>`;
+        throw new Error("Invalid code");
+      }
+
+      // set judul
+      titleEl.textContent = customTitle
+        ? `${customTitle} — ${siteName}`
+        : "Watch";
+
+      // isi mirror selector
+      mirrors.forEach((m, i) => {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = `${i + 1}. ${m}`;
+        mirrorSel.appendChild(opt);
+      });
+
+      function buildEmbed(host, code) {
+        return `https://${host}/e/${encodeURIComponent(code)}`;
+      }
+      function buildShare(host, code) {
+        return `https://${host}/s/${encodeURIComponent(code)}`;
+      }
+
+      function setPlayerHost(host) {
+        playerError.classList.add("hidden");
+        player.src = buildEmbed(host, code);
+        // set download target (pakai share url—banyak host blokir direct)
+        downloadBtn.dataset.href = buildShare(host, code);
+      }
+
+      // adult gate
+      adultWarning.classList.remove("hidden");
+      adultWarning.classList.add("flex");
+      btnAdult.addEventListener("click", () => {
+        adultWarning.classList.add("hidden");
+        playerWrap.classList.remove("hidden");
+        setPlayerHost(mirrors[0]);
+      });
+
+      // ganti mirror
+      mirrorSel.addEventListener("change", () => {
+        setPlayerHost(mirrorSel.value);
+      });
+
+      // download (dengan countdown)
+      let cd = downloadCountdownStart;
+      let ticking = false;
+      downloadBtn.addEventListener("click", () => {
+        if (!ticking) {
+          ticking = true;
+          downloadBtn.disabled = true;
+          const timer = setInterval(() => {
+            cd--;
+            downloadBtn.textContent = `Download Video (${cd})`;
+            if (cd <= 0) {
+              clearInterval(timer);
+              downloadBtn.disabled = false;
+              downloadBtn.textContent = "⬇️ Ready to Download";
+              ticking = false;
+              cd = 0;
+              // klik kedua: buka link
+              downloadBtn.addEventListener("click", goDownload, { once: true });
+            }
+          }, 1000);
+        }
+      });
+
+      function goDownload() {
+        const href = downloadBtn.dataset.href;
+        if (!href) return;
+        const a = document.createElement("a");
+        a.href = href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+
+      // report
+      reportBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        reportModal.classList.remove("hidden");
+        reportModal.classList.add("flex");
+      });
+      closeReport.addEventListener("click", () =>
+        reportModal.classList.add("hidden")
+      );
+      document.getElementById("reportForm")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const reason = document.querySelector(
+          'input[name="reason"]:checked'
+        )?.value;
+        if (reason) {
+          console.log("Report submitted:", { code, reason });
+          alert("Terima kasih, laporanmu sudah dicatat.");
+        }
+        reportModal.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>

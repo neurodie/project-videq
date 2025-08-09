@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Lixstream</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://lixstream.com/favicon.ico"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .folder-card {
+        transition: transform 0.2s;
+      }
+      .folder-card:hover {
+        transform: scale(1.03);
+      }
+      .folder-thumbnail {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16/9;
+      }
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+      }
+      @supports not (aspect-ratio: 16/9) {
+        .video-wrapper {
+          padding-bottom: 56.25%;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white" data-version="v1.0.8">
+    <div class="container mx-auto px-4 py-6 max-w-5xl">
+      <!-- Header -->
+      <header class="flex items-center justify-between mb-6">
+        <a href="/" class="text-2xl font-bold text-yellow-400">Lixstream</a>
+        <div class="text-sm text-gray-400">Static • JS fetch</div>
+      </header>
+
+      <!-- Status / Alerts -->
+      <div
+        id="alert"
+        class="hidden rounded-md border border-yellow-500/50 bg-yellow-900/20 p-3 text-sm text-yellow-200"
+      ></div>
+
+      <!-- Skeleton loader -->
+      <div
+        id="skeleton"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
+      >
+        <!-- 6 skeleton cards -->
+        <template id="skeleton-card">
+          <div
+            class="bg-gray-800 rounded-lg overflow-hidden shadow-lg animate-pulse"
+          >
+            <div
+              class="w-full"
+              style="
+                aspect-ratio: 16/9;
+                background: linear-gradient(
+                  90deg,
+                  #374151 25%,
+                  #4b5563 37%,
+                  #374151 63%
+                );
+                background-size: 400% 100%;
+              "
+            ></div>
+            <div class="p-4 space-y-2">
+              <div class="h-5 bg-gray-700 rounded"></div>
+              <div class="h-4 w-24 bg-gray-700 rounded"></div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Grid hasil -->
+      <div
+        id="grid"
+        class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
+      ></div>
+
+      <!-- Empty state -->
+      <div id="empty" class="hidden mt-8 text-gray-400">
+        Belum ada data video.
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-10 text-center text-gray-400 text-sm">
+        <div class="mb-2">
+          Copyright © <span id="year"></span> TRUE DOMAIN PRIVACY, LLC
+        </div>
+        <div class="space-x-4">
+          <a href="/terms-of-service" class="hover:text-white transition"
+            >Terms of Service</a
+          >
+          <a href="#" id="reportAbuse" class="hover:text-white transition"
+            >Report Abuse</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // util sederhana
+      const el = (sel) => document.querySelector(sel);
+      const esc = (s) => String(s ?? "");
+      const isHttp = (u) => /^https?:\/\//i.test(String(u));
+      const placeholder = "https://via.placeholder.com/640x360?text=No+Image";
+
+      // render skeleton
+      (() => {
+        const wrap = el("#skeleton");
+        const tpl = el("#skeleton-card").content;
+        for (let i = 0; i < 6; i++) wrap.appendChild(tpl.cloneNode(true));
+      })();
+
+      async function load() {
+        const alert = el("#alert");
+        const grid = el("#grid");
+        const skeleton = el("#skeleton");
+        const empty = el("#empty");
+
+        try {
+          const res = await fetch("https://lixpy.vercel.app/scrape", {
+            headers: { Accept: "application/json" },
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+
+          const results = Array.isArray(data?.results) ? data.results : [];
+
+          // clear skeleton
+          skeleton.classList.add("hidden");
+
+          if (!results.length) {
+            empty.classList.remove("hidden");
+            return;
+          }
+
+          grid.innerHTML = "";
+          grid.classList.remove("hidden");
+
+          for (const folder of results) {
+            const name = esc(folder?.name || "Untitled");
+            const dirId = esc(folder?.dir_id || "");
+            const total = Number(folder?.total || 0);
+            const first =
+              folder?.files && folder.files[0] ? folder.files[0] : null;
+            const thumb = isHttp(first?.thumb) ? first.thumb : placeholder;
+
+            const a = document.createElement("a");
+            a.href = `/f/${encodeURIComponent(dirId)}?name=${encodeURIComponent(
+              name
+            )}`;
+            a.className =
+              "folder-card bg-gray-800 rounded-lg overflow-hidden shadow-lg";
+
+            a.innerHTML = `
+            <div class="relative">
+              <img src="${esc(
+                thumb
+              )}" alt="${name}" class="folder-thumbnail" loading="lazy">
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                <h3 class="text-lg font-semibold text-white line-clamp-2">${name}</h3>
+                <p class="text-sm text-gray-300">${total} videos</p>
+              </div>
+            </div>
+          `;
+            grid.appendChild(a);
+          }
+        } catch (err) {
+          skeleton.classList.add("hidden");
+          alert.textContent = `Gagal memuat data: ${err.message || err}`;
+          alert.classList.remove("hidden");
+        }
+      }
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      load();
+    </script>
+  </body>
+</html>
