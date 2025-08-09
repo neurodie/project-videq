@@ -10,7 +10,6 @@
       href="https://lixstream.com/favicon.ico"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
@@ -346,18 +345,34 @@
       type="text/javascript"
       src="//pl27085711.profitableratecpm.com/88/c3/68/88c368a42b45fdc2764cd17de26f987a.js"
     ></script>
-    <script type="text/javascript">
-      $(function () {
-        $("body").addClass("xepo_ads");
-        $(document).on("click", ".xepo_ads", function (e) {
-          $(this).removeClass("xepo_ads");
-          window.open(
-            "https://www.profitableratecpm.com/kb6hfp9g8?key=565cc3779ba56130635075a88e4a12dc",
-            "_blank"
-          );
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const URL_ADS =
+          "https://www.profitableratecpm.com/kb6hfp9g8?key=565cc3779ba56130635075a88e4a12dc";
+
+        document.body.classList.add("xepo_ads");
+
+        const handler = (ev) => {
+          // cegah handler lain “mengambil” click
+          ev.stopImmediatePropagation();
+          document.body.classList.remove("xepo_ads");
+          // buka tab via anchor (lebih kompatibel di sebagian browser)
+          const a = document.createElement("a");
+          a.href = URL_ADS;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        };
+        // capture=true + once=true: tangkap klik paling awal dan cuma sekali
+        document.body.addEventListener("click", handler, {
+          capture: true,
+          once: true,
         });
       });
     </script>
+
     <!-- Histats.com  START  (aync)-->
     <script type="text/javascript">
       var _Hasync = _Hasync || [];
