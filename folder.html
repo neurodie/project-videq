@@ -170,9 +170,12 @@
         headName.textContent = folderNameGiven || dirId;
         meta.textContent = "Memuat data...";
         try {
-          const res = await fetch("https://lixpy.vercel.app/scrape", {
-            headers: { Accept: "application/json" },
-          });
+          const res = await fetch(
+            "https://raw.githubusercontent.com/neurodie/project-videq/refs/heads/main/db.txt",
+            {
+              headers: { Accept: "application/json" },
+            }
+          );
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
 
@@ -199,7 +202,9 @@
           state.page = 1;
 
           headName.textContent = folder.name || folderNameGiven || dirId;
-          meta.textContent = `Total: ${folder.total ?? state.all.length} videos`;
+          meta.textContent = `Total: ${
+            folder.total ?? state.all.length
+          } videos`;
           render();
           hookEvents();
         } catch (e) {

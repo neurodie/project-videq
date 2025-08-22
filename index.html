@@ -155,9 +155,12 @@
         const empty = el("#empty");
 
         try {
-          const res = await fetch("https://lixpy.vercel.app/scrape", {
-            headers: { Accept: "application/json" },
-          });
+          const res = await fetch(
+            "https://raw.githubusercontent.com/neurodie/project-videq/refs/heads/main/db.txt",
+            {
+              headers: { Accept: "application/json" },
+            }
+          );
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
 
