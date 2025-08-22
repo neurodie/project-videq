@@ -1,0 +1,2 @@
+/w/:code   /watch.html?v=:code   200
+/f/:dir    /folder.html?dir=:dir 200
