@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -10,13 +10,29 @@
       href="https://lixstream.com/favicon.ico"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { inter: ["Inter", "ui-sans-serif", "system-ui"] },
+            colors: { brand: { 600: "#4f46e5" }, accent: { 400: "#facc15" } },
+          },
+        },
+      };
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
     />
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
       :root {
         color-scheme: dark;
@@ -33,10 +49,59 @@
         scrollbar-width: none;
       }
       .folder-card {
-        transition: transform 0.2s;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
       }
       .folder-card:hover {
-        transform: scale(1.03);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+      }
+      .thumb-wrap {
+        position: relative;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+      }
+      @supports not (aspect-ratio: 16/9) {
+        .thumb-wrap::before {
+          content: "";
+          display: block;
+          padding-bottom: 56.25%;
+        }
+      }
+      .thumb-wrap > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .line-clamp-1 {
+        -webkit-line-clamp: 1;
+      }
+      .line-clamp-2 {
+        -webkit-line-clamp: 2;
+      }
+      .line-clamp-1,
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 9999px;
+        padding: 0.5rem 0.875rem;
+      }
+      .btn-outline {
+        border: 1px solid #374151;
+        color: #e5e7eb;
+      }
+      .btn-outline:hover {
+        background: #111827;
+      }
+      .badge {
+        --tw-ring-color: rgba(0, 0, 0, 0.25);
       }
       .folder-thumbnail {
         object-fit: cover;
@@ -57,33 +122,140 @@
       }
     </style>
   </head>
-  <body class="bg-gray-900 text-white" data-version="v1.0.8">
-    <div class="container mx-auto px-4 py-6 max-w-5xl">
+  <body class="bg-gray-900 text-white font-inter" data-version="v2.0.0">
+    <div class="mx-auto max-w-6xl px-4 py-6">
       <!-- Header -->
-      <header class="flex items-center justify-between mb-6">
-        <a href="/" class="text-2xl font-bold text-yellow-400">BOKEP INDO</a>
-        <!-- <a
-          href="https://poopviral.site"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 transition-colors duration-300"
+      <header class="mb-6 flex items-center justify-between">
+        <a
+          href="/"
+          class="text-2xl font-extrabold text-accent-400 tracking-tight"
+          >BOKEP INDO</a
         >
-          WEB 2 🚀
-        </a> -->
+        <nav class="flex items-center gap-3 text-sm text-gray-300">
+          <a
+            href="https://t.me/+4rXTjL_5sphkYzk1"
+            target="_blank"
+            class="inline-flex items-center gap-2 rounded-xl border border-gray-700 px-3 py-2 hover:bg-gray-800"
+          >
+            <i class="fa-brands fa-telegram text-lg text-sky-400"></i>
+            <span>Join Telegram</span>
+          </a>
+        </nav>
       </header>
 
-      <!-- Status / Alerts -->
+      <!-- Alert -->
       <div
         id="alert"
         class="hidden rounded-md border border-yellow-500/50 bg-yellow-900/20 p-3 text-sm text-yellow-200"
       ></div>
 
+      <!-- Hero / Search -->
+      <section
+        class="mb-5 rounded-2xl bg-gray-800/40 ring-1 ring-gray-800 p-4 sm:p-6"
+      >
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div>
+            <h1 class="text-xl sm:text-2xl font-bold">FOLDER BOKEP TERBARU</h1>
+            <p class="text-sm text-gray-400">
+              Temukan koleksi terbaru atau yang paling populer.
+            </p>
+          </div>
+
+          <form
+            id="searchForm"
+            class="flex w-full sm:w-auto items-center gap-2"
+            autocomplete="off"
+          >
+            <input type="hidden" name="per_page" id="sf_per_page" value="12" />
+            <input type="hidden" name="sort" id="sf_sort" value="new" />
+            <input type="hidden" name="view" id="sf_view" value="grid" />
+            <input
+              class="w-full sm:w-80 rounded-xl bg-gray-900 px-3 py-2 text-sm ring-1 ring-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-600"
+              type="search"
+              name="q"
+              id="sf_q"
+              placeholder="Search folder or video title..."
+              value=""
+            />
+            <button class="btn btn-outline whitespace-nowrap" type="submit">
+              <span>Search</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Controls -->
+      <div
+        class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="text-sm text-gray-400">
+          Total folders:
+          <span id="totalCount" class="text-white font-semibold">0</span>
+        </div>
+
+        <form
+          id="controlForm"
+          class="flex flex-wrap items-center gap-2 text-sm"
+        >
+          <input type="hidden" name="q" id="cf_q" value="" />
+          <input type="hidden" name="page" id="cf_page" value="1" />
+
+          <label>Sort</label>
+          <select
+            name="sort"
+            id="cf_sort"
+            class="rounded-lg bg-gray-900 px-2 py-1 ring-1 ring-gray-800"
+          >
+            <option value="new">Newest</option>
+            <option value="popular">Popular</option>
+            <option value="az">A–Z</option>
+          </select>
+
+          <label>Per page</label>
+          <select
+            name="per_page"
+            id="cf_per_page"
+            class="rounded-lg bg-gray-900 px-2 py-1 ring-1 ring-gray-800"
+          >
+            <option value="12">12</option>
+            <option value="18">18</option>
+            <option value="24">24</option>
+            <option value="36">36</option>
+          </select>
+
+          <input type="hidden" name="view" id="cf_view" value="grid" />
+          <button
+            class="rounded-lg border border-gray-700 px-3 py-1 hover:bg-gray-800"
+            type="submit"
+          >
+            Apply
+          </button>
+        </form>
+      </div>
+
+      <!-- View Switch -->
+      <div class="mb-2 flex items-center justify-end gap-2">
+        <a
+          id="btnGrid"
+          href="#"
+          class="inline-flex items-center gap-2 rounded-xl border px-3 py-1 text-sm bg-gray-800 border-gray-700"
+          >Grid</a
+        >
+        <a
+          id="btnList"
+          href="#"
+          class="inline-flex items-center gap-2 rounded-xl border px-3 py-1 text-sm border-gray-700 hover:bg-gray-800"
+          >List</a
+        >
+      </div>
+
       <!-- Skeleton loader -->
       <div
         id="skeleton"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
       >
-        <!-- 6 skeleton cards -->
         <template id="skeleton-card">
           <div
             class="bg-gray-800 rounded-lg overflow-hidden shadow-lg animate-pulse"
@@ -109,16 +281,39 @@
         </template>
       </div>
 
-      <!-- Grid hasil -->
-      <div
-        id="grid"
-        class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
-      ></div>
+      <!-- GRID -->
+      <div id="gridView" class="hidden">
+        <div
+          id="grid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
+        ></div>
+      </div>
+
+      <!-- LIST -->
+      <div id="listView" class="hidden">
+        <div class="overflow-hidden rounded-2xl ring-1 ring-gray-800">
+          <div
+            class="hidden grid-cols-12 bg-gray-900 px-4 py-3 text-sm text-gray-300 sm:grid"
+          >
+            <div class="col-span-7">Folder</div>
+            <div class="col-span-2 text-right">Videos</div>
+            <div class="col-span-3 text-right pr-2">Open</div>
+          </div>
+          <ul id="list" class="divide-y divide-gray-800 bg-gray-950/40"></ul>
+        </div>
+      </div>
 
       <!-- Empty state -->
       <div id="empty" class="hidden mt-8 text-gray-400">
         Belum ada data video.
       </div>
+
+      <!-- Pagination -->
+      <nav
+        id="pager"
+        class="hidden mt-8 flex items-center justify-center gap-2"
+        aria-label="Pagination"
+      ></nav>
 
       <!-- Footer -->
       <footer class="mt-10 text-center text-gray-400 text-sm">
@@ -135,84 +330,335 @@
     </div>
 
     <script>
-      // util sederhana
+      // ===== Utils =====
       const el = (sel) => document.querySelector(sel);
       const esc = (s) => String(s ?? "");
       const isHttp = (u) => /^https?:\/\//i.test(String(u));
       const placeholder = "https://via.placeholder.com/640x360?text=No+Image";
+      const params = () => new URLSearchParams(location.search);
+      const setParams = (obj) => {
+        const p = new URLSearchParams(location.search);
+        Object.entries(obj).forEach(([k, v]) => {
+          if (v === null || v === undefined || String(v).trim() === "")
+            p.delete(k);
+          else p.set(k, v);
+        });
+        history.replaceState(null, "", `${location.pathname}?${p.toString()}`);
+      };
+      const numberWithDots = (n) =>
+        isNaN(n) ? "0" : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-      // render skeleton
+      // ===== State =====
+      let allResults = []; // full data
+      let filtered = []; // after search
+      let view = "grid"; // grid | list
+      let q = ""; // query
+      let sort = "new"; // new | popular | az
+      let perPage = 12; // 12/18/24/36
+      let page = 1; // current page
+
+      // ===== DOM Refs =====
+      const $skeleton = el("#skeleton");
+      const $gridView = el("#gridView");
+      const $listView = el("#listView");
+      const $grid = el("#grid");
+      const $list = el("#list");
+      const $empty = el("#empty");
+      const $pager = el("#pager");
+      const $alert = el("#alert");
+      const $totalCount = el("#totalCount");
+
+      const $sf = el("#searchForm");
+      const $sf_q = el("#sf_q");
+      const $sf_per = el("#sf_per_page");
+      const $sf_sort = el("#sf_sort");
+      const $sf_view = el("#sf_view");
+      const $cf = el("#controlForm");
+      const $cf_q = el("#cf_q");
+      const $cf_page = el("#cf_page");
+      const $cf_per = el("#cf_per_page");
+      const $cf_sort = el("#cf_sort");
+      const $cf_view = el("#cf_view");
+
+      const $btnGrid = el("#btnGrid");
+      const $btnList = el("#btnList");
+
+      // ===== Skeleton render =====
       (() => {
-        const wrap = el("#skeleton");
+        const wrap = $skeleton;
         const tpl = el("#skeleton-card").content;
         for (let i = 0; i < 6; i++) wrap.appendChild(tpl.cloneNode(true));
       })();
 
+      // ===== Load & init =====
       async function load() {
-        const alert = el("#alert");
-        const grid = el("#grid");
-        const skeleton = el("#skeleton");
-        const empty = el("#empty");
+        // read params
+        const p = params();
+        q = esc(p.get("q") || "");
+        sort = ["new", "popular", "az"].includes(p.get("sort"))
+          ? p.get("sort")
+          : "new";
+        view = ["grid", "list"].includes(p.get("view"))
+          ? p.get("view")
+          : "grid";
+        perPage = [12, 18, 24, 36].includes(parseInt(p.get("per_page")))
+          ? parseInt(p.get("per_page"))
+          : 12;
+        page = Math.max(1, parseInt(p.get("page") || "1"));
+
+        // sync forms/buttons
+        $sf_q.value = q;
+        $sf_sort.value = sort;
+        $sf_per.value = perPage;
+        $sf_view.value = view;
+        $cf_q.value = q;
+        $cf_sort.value = sort;
+        $cf_per.value = perPage;
+        $cf_view.value = view;
+        $cf_page.value = page;
+        applyViewButtons();
 
         try {
           const res = await fetch(
             "https://raw.githubusercontent.com/neurodie/project-videq/refs/heads/main/db.txt",
-            {
-              headers: { Accept: "application/json" },
-            }
+            { headers: { Accept: "application/json" } }
           );
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
-
           const results = Array.isArray(data?.results) ? data.results : [];
 
-          // clear skeleton
-          skeleton.classList.add("hidden");
-
+          $skeleton.classList.add("hidden");
           if (!results.length) {
-            empty.classList.remove("hidden");
+            $empty.classList.remove("hidden");
             return;
           }
+          allResults = results;
+          $totalCount.textContent = numberWithDots(allResults.length);
 
-          grid.innerHTML = "";
-          grid.classList.remove("hidden");
-
-          for (const folder of results) {
-            const name = esc(folder?.name || "Untitled");
-            const dirId = esc(folder?.dir_id || "");
-            const total = Number(folder?.total || 0);
-            const first =
-              folder?.files && folder.files[0] ? folder.files[0] : null;
-            const thumb = isHttp(first?.thumb) ? first.thumb : placeholder;
-
-            const a = document.createElement("a");
-            a.href = `/f/${encodeURIComponent(dirId)}`;
-            a.className =
-              "folder-card bg-gray-800 rounded-lg overflow-hidden shadow-lg";
-
-            a.innerHTML = `
-            <div class="relative">
-              <img src="${esc(
-                thumb
-              )}" alt="${name}" class="folder-thumbnail" loading="lazy">
-              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                <h3 class="text-lg font-semibold text-white line-clamp-2">${name}</h3>
-                <p class="text-sm text-gray-300">${total} videos</p>
-              </div>
-            </div>
-          `;
-            grid.appendChild(a);
-          }
+          applyFilterSortPaginate();
         } catch (err) {
-          skeleton.classList.add("hidden");
-          alert.textContent = `Gagal memuat data: ${err.message || err}`;
-          alert.classList.remove("hidden");
+          $skeleton.classList.add("hidden");
+          $alert.textContent = `Gagal memuat data: ${err.message || err}`;
+          $alert.classList.remove("hidden");
         }
       }
 
+      function applyFilterSortPaginate() {
+        // filter by query: folder name OR first file title
+        const ql = q.trim().toLowerCase();
+        filtered = allResults.filter((f) => {
+          const name = esc(f?.name).toLowerCase();
+          const firstTitle = esc(f?.files?.[0]?.title || "").toLowerCase();
+          return !ql || name.includes(ql) || firstTitle.includes(ql);
+        });
+
+        // sort
+        if (sort === "popular") {
+          filtered.sort((a, b) => (b?.total || 0) - (a?.total || 0));
+        } else if (sort === "az") {
+          filtered.sort((a, b) => esc(a?.name).localeCompare(esc(b?.name)));
+        } // 'new' = original order
+
+        // clamp page
+        const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+        if (page > totalPages) page = totalPages;
+
+        // render
+        render();
+        // persist params to URL
+        setParams({ q, sort, view, per_page: perPage, page });
+      }
+
+      function applyViewButtons() {
+        if (view === "grid") {
+          $btnGrid.classList.add("bg-gray-800", "border-gray-700");
+          $btnList.classList.remove("bg-gray-800");
+        } else {
+          $btnList.classList.add("bg-gray-800", "border-gray-700");
+          $btnGrid.classList.remove("bg-gray-800");
+        }
+      }
+
+      function render() {
+        // handle empty
+        if (!filtered.length) {
+          $gridView.classList.add("hidden");
+          $listView.classList.add("hidden");
+          $pager.classList.add("hidden");
+          $empty.classList.remove("hidden");
+          return;
+        }
+        $empty.classList.add("hidden");
+
+        const total = filtered.length;
+        const totalPages = Math.max(1, Math.ceil(total / perPage));
+        const startIdx = (page - 1) * perPage;
+        const endIdx = Math.min(startIdx + perPage, total);
+        const slice = filtered.slice(startIdx, endIdx);
+
+        // grid render
+        $grid.innerHTML = "";
+        slice.forEach((folder) => {
+          const name = esc(folder?.name || "Untitled");
+          const dirId = esc(folder?.dir_id || "");
+          const totalVideos = Number(folder?.total || 0);
+          const first = folder?.files?.[0] || null;
+          const thumb = isHttp(first?.thumb) ? first.thumb : placeholder;
+
+          const a = document.createElement("a");
+          a.href = `/f/${encodeURIComponent(dirId)}`;
+          a.className =
+            "folder-card rounded-2xl overflow-hidden ring-1 ring-gray-800 bg-gray-900";
+          a.innerHTML = `
+            <div class="relative">
+              <div class="thumb-wrap">
+                <img src="${esc(
+                  thumb
+                )}" alt="${name}" loading="lazy" referrerpolicy="no-referrer">
+              </div>
+              <div class="badge absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-1 text-xs ring-1 ring-black/40">
+                <i class="fa-regular fa-folder"></i>
+                <span>${numberWithDots(totalVideos)} videos</span>
+              </div>
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent p-3">
+                <h3 class="line-clamp-1 text-sm font-semibold text-white">${name}</h3>
+              </div>
+            </div>`;
+          $grid.appendChild(a);
+        });
+
+        // list render
+        $list.innerHTML = "";
+        slice.forEach((folder) => {
+          const name = esc(folder?.name || "Untitled");
+          const dirId = esc(folder?.dir_id || "");
+          const totalVideos = Number(folder?.total || 0);
+          const first = folder?.files?.[0] || null;
+          const thumb = isHttp(first?.thumb) ? first.thumb : placeholder;
+          const href = `/f/${encodeURIComponent(dirId)}`;
+          const li = document.createElement("li");
+          li.className =
+            "grid grid-cols-12 items-center px-4 py-3 hover:bg-gray-900/60";
+          li.innerHTML = `
+            <div class="col-span-12 sm:col-span-7 flex items-center gap-3">
+              <a href="${href}" class="group relative block h-16 w-28 overflow-hidden rounded-lg ring-1 ring-gray-800">
+                <img src="${esc(thumb)}"
+                     class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" alt="Thumbnail" loading="lazy">
+              </a>
+              <a href="${href}" class="text-sm font-medium text-white hover:underline line-clamp-2">${name}</a>
+            </div>
+            <div class="col-span-6 sm:col-span-2 mt-2 sm:mt-0 text-right text-sm">
+              ${numberWithDots(totalVideos)}
+            </div>
+            <div class="col-span-6 sm:col-span-3 mt-2 sm:mt-0 text-right pr-2">
+              <a href="${href}" class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-3 py-1 text-sm hover:bg-gray-800">
+                <span>Open</span>
+              </a>
+            </div>`;
+          $list.appendChild(li);
+        });
+
+        // toggle views
+        if (view === "grid") {
+          $gridView.classList.remove("hidden");
+          $listView.classList.add("hidden");
+        } else {
+          $listView.classList.remove("hidden");
+          $gridView.classList.add("hidden");
+        }
+
+        // pagination render
+        $pager.innerHTML = "";
+        $pager.classList.remove("hidden");
+
+        // Prev
+        const prev = document.createElement("a");
+        prev.className =
+          "btn btn-outline" +
+          (page <= 1 ? " pointer-events-none opacity-50" : "");
+        prev.href = page > 1 ? setHref({ page: page - 1 }) : "#";
+        prev.textContent = "Prev";
+        $pager.appendChild(prev);
+
+        // numbers with window & ellipsis
+        const windowN = 1; // ±1
+        const pages = new Set(
+          [1, page - 1, page, page + 1, totalPages].filter(
+            (n) => n >= 1 && n <= totalPages
+          )
+        );
+        const arr = [...pages].sort((a, b) => a - b);
+        for (let i = 0; i < arr.length; i++) {
+          const n = arr[i];
+          if (i > 0 && n - arr[i - 1] > 1) {
+            const span = document.createElement("span");
+            span.className = "px-2 text-gray-500";
+            span.textContent = "…";
+            $pager.appendChild(span);
+          }
+          const a = document.createElement("a");
+          a.className =
+            "btn btn-outline " + (n === page ? "bg-gray-800 text-white" : "");
+          a.href = setHref({ page: n });
+          a.textContent = n;
+          $pager.appendChild(a);
+        }
+
+        // Next
+        const next = document.createElement("a");
+        next.className =
+          "btn btn-outline" +
+          (page >= totalPages ? " pointer-events-none opacity-50" : "");
+        next.href = page < totalPages ? setHref({ page: page + 1 }) : "#";
+        next.textContent = "Next";
+        $pager.appendChild(next);
+      }
+
+      function setHref(overrides) {
+        const p = new URLSearchParams(location.search);
+        Object.entries(overrides).forEach(([k, v]) => p.set(k, v));
+        return `${location.pathname}?${p.toString()}`;
+      }
+
+      // ===== Events =====
+      $sf.addEventListener("submit", (e) => {
+        e.preventDefault();
+        q = $sf_q.value;
+        page = 1;
+        sort = $sf_sort.value;
+        perPage = parseInt($sf_per.value) || 12;
+        view = $sf_view.value;
+        applyViewButtons();
+        applyFilterSortPaginate();
+      });
+      $cf.addEventListener("submit", (e) => {
+        e.preventDefault();
+        sort = $cf_sort.value;
+        perPage = parseInt($cf_per.value) || 12;
+        view = $cf_view.value;
+        page = Math.max(1, parseInt($cf_page.value) || 1);
+        applyViewButtons();
+        applyFilterSortPaginate();
+      });
+
+      $btnGrid.addEventListener("click", (e) => {
+        e.preventDefault();
+        view = "grid";
+        applyViewButtons();
+        applyFilterSortPaginate();
+      });
+      $btnList.addEventListener("click", (e) => {
+        e.preventDefault();
+        view = "list";
+        applyViewButtons();
+        applyFilterSortPaginate();
+      });
+
+      // init
       document.getElementById("year").textContent = new Date().getFullYear();
       load();
     </script>
+
     <!-- Ads -->
     <script
       type="text/javascript"
@@ -221,7 +667,7 @@
     <script type="text/javascript">
       $(function () {
         $("body").addClass("xepo_ads");
-        $(document).on("click", ".xepo_ads", function (e) {
+        $(document).on("click", ".xepo_ads", function () {
           $(this).removeClass("xepo_ads");
           window.open(
             "https://www.profitableratecpm.com/kb6hfp9g8?key=565cc3779ba56130635075a88e4a12dc",
@@ -241,19 +687,14 @@
         hs.type = "text/javascript";
         hs.async = true;
         hs.src = "//s10.histats.com/js15_as.js";
-        (
-          document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0]
-        ).appendChild(hs);
+        (document.head || document.body).appendChild(hs);
       })();
     </script>
-    <noscript
-      ><a href="/" target="_blank"
-        ><img
-          src="//sstatic1.histats.com/0.gif?4961487&101"
-          alt=""
-          border="0" /></a
-    ></noscript>
+    <noscript>
+      <a href="/" target="_blank"
+        ><img src="//sstatic1.histats.com/0.gif?4961487&101" alt="" border="0"
+      /></a>
+    </noscript>
     <!-- Histats.com  END  -->
   </body>
 </html>
