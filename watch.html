@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Watch — Bokep INDO</title>
+    <title>Watch — BOKEP INDO</title>
     <link
       rel="icon"
       type="image/x-icon"
       href="https://lixstream.com/favicon.ico"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { inter: ["Inter", "ui-sans-serif", "system-ui"] },
+            colors: { brand: { 600: "#4f46e5" }, accent: { 400: "#facc15" } },
+          },
+        },
+      };
+    </script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <style>
       :root {
@@ -34,22 +50,53 @@
           padding-bottom: 56.25%;
         }
       }
+      .skeleton {
+        background: linear-gradient(
+          90deg,
+          #1f2937 25%,
+          #374151 37%,
+          #1f2937 63%
+        );
+        background-size: 400% 100%;
+        animation: pulse 1.2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0 50%;
+        }
+      }
     </style>
   </head>
   <body class="bg-gray-900 text-white">
     <div class="container mx-auto px-4 py-6 max-w-5xl">
       <!-- Header -->
-      <header class="flex items-center justify-between mb-6">
-        <a href="/" class="text-2xl font-bold text-yellow-400">BOKEP INDO</a>
-        <div class="flex items-center space-x-3">
+      <header class="mb-6 flex items-center justify-between">
+        <a
+          href="/"
+          class="text-2xl font-extrabold text-accent-400 tracking-tight"
+          >BOKEP INDO</a
+        >
+        <nav class="flex items-center gap-3 text-sm">
           <a
-            href="/"
             id="backLink"
-            class="text-sm text-gray-300 hover:text-white transition"
+            href="/"
+            class="inline-flex items-center gap-2 rounded-xl border border-gray-700 px-3 py-2 hover:bg-gray-800"
           >
-            ← Back
+            <i class="fa-solid fa-arrow-left"></i><span>Back</span>
           </a>
-        </div>
+          <a
+            href="https://t.me/+4rXTjL_5sphkYzk1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl border border-gray-700 px-3 py-2 hover:bg-gray-800"
+          >
+            <i class="fa-brands fa-telegram text-sky-400"></i
+            ><span>Join Telegram</span>
+          </a>
+        </nav>
       </header>
 
       <!-- Adult Warning -->
@@ -57,19 +104,20 @@
         id="adultWarning"
         class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4"
       >
-        <div class="bg-gray-800 rounded-lg p-6 max-w-md w-full">
+        <div
+          class="bg-gray-800 rounded-2xl p-6 max-w-md w-full ring-1 ring-gray-700"
+        >
           <h2 class="text-xl font-semibold mb-3">Adult Content Warning</h2>
           <p class="text-gray-300 mb-6">
-            Konten ini mungkin mengandung materi dewasa. Kamu harus berusia 18+
-            untuk melanjutkan. Dengan melanjutkan, kamu setuju dengan
+            Konten ini untuk 18+. Dengan melanjutkan, kamu setuju pada
             <a href="/terms-of-service" class="text-yellow-400 hover:underline"
               >Terms of Service</a
             >.
           </p>
-          <div class="flex justify-between">
+          <div class="flex justify-between gap-3">
             <a
               href="/"
-              class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg"
+              class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg"
               >Keluar</a
             >
             <button
@@ -82,48 +130,54 @@
         </div>
       </div>
 
-      <!-- Title -->
-      <!-- <h1 id="title" class="text-lg font-semibold mb-3"></h1> -->
-      <h1 id="title" class="text-lg font-semibold mb-3">
-        GABUNG TELEGRAM
-        <a
-          href="https://t.me/+4rXTjL_5sphkYzk1"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-blue-400 underline hover:text-blue-300"
-        >
-          KLIK DISINI
-        </a>
-      </h1>
+      <!-- Subinfo -->
+      <div class="mb-3">
+        <div id="subinfo" class="text-xs text-gray-400"></div>
+      </div>
 
-      <!-- Mirror selector -->
+      <!-- Controls: KOMPAK -->
       <div
-        class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between mb-3"
+        class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
       >
-        <div class="text-sm text-gray-300">
-          Server:
+        <div class="flex items-center gap-2 text-sm">
+          <span class="text-gray-300">Server</span>
           <select
             id="mirrorSel"
-            class="bg-gray-800 border border-gray-700 rounded px-2 py-1"
-          >
-            <!-- mirrors injected by JS -->
-          </select>
+            class="h-9 bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm"
+          ></select>
         </div>
-        <div>
+        <div class="flex items-center gap-2">
+          <button
+            id="copyLink"
+            class="rounded-full border border-gray-700 px-4 py-2 text-sm hover:bg-gray-800"
+          >
+            <i class="fa-solid fa-link"></i> Copy
+          </button>
           <button
             id="downloadBtn"
             class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-full text-sm"
           >
-            Download Video
+            <i class="fa-solid fa-download"></i> Download Video
           </button>
+        </div>
+      </div>
+
+      <!-- Download progress -->
+      <div id="dlWrap" class="hidden mb-3">
+        <div class="h-2 rounded-full bg-gray-800 overflow-hidden">
+          <div id="dlProg" class="h-full bg-yellow-400" style="width: 0%"></div>
+        </div>
+        <div id="dlText" class="mt-1 text-xs text-gray-400">
+          Menyiapkan tautan…
         </div>
       </div>
 
       <!-- Player -->
       <div
         id="playerWrap"
-        class="video-container relative bg-black rounded-lg overflow-hidden hidden"
+        class="relative bg-black rounded-2xl overflow-hidden ring-1 ring-gray-800 hidden"
       >
+        <div id="skeleton" class="absolute inset-0 skeleton"></div>
         <div class="video-wrapper">
           <iframe
             id="player"
@@ -134,9 +188,14 @@
             class="w-full h-full"
           ></iframe>
         </div>
-        <div id="playerError" class="hidden text-center p-4">
-          <div class="text-red-400 text-base">Video gagal dimuat.</div>
-          <div class="text-gray-400 text-sm">
+        <div
+          id="playerError"
+          class="hidden absolute inset-x-0 bottom-0 p-4 bg-black/70"
+        >
+          <div class="text-red-400 text-base font-semibold">
+            Video gagal dimuat.
+          </div>
+          <div class="text-gray-300 text-sm">
             Coba ganti server di atas atau periksa koneksi.
           </div>
         </div>
@@ -144,13 +203,12 @@
 
       <!-- Report -->
       <div class="mt-4">
-        <a
-          href="#"
+        <button
           id="reportBtn"
           class="px-4 py-2 rounded-full border border-gray-700 text-gray-300 hover:bg-gray-800 text-sm"
         >
-          Report
-        </a>
+          <i class="fa-regular fa-flag"></i> Report
+        </button>
       </div>
 
       <!-- Report Modal -->
@@ -158,7 +216,9 @@
         id="reportModal"
         class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4"
       >
-        <div class="bg-gray-800 rounded-lg p-6 max-w-md w-full relative">
+        <div
+          class="bg-gray-800 rounded-2xl p-6 max-w-md w-full relative ring-1 ring-gray-700"
+        >
           <button
             id="closeReport"
             class="absolute right-4 top-2 text-2xl leading-none"
@@ -168,12 +228,12 @@
           <h2 class="text-xl font-semibold mb-4">Apa masalahnya?</h2>
           <form id="reportForm" class="space-y-3">
             <label class="flex items-center gap-2 text-sm"
-              ><input type="radio" name="reason" value="dislike" /> Saya tidak
+              ><input type="radio" name="reason" value="dislike" /> Tidak
               suka</label
             >
             <label class="flex items-center gap-2 text-sm"
-              ><input type="radio" name="reason" value="hateful" /> Konten benci
-              / ofensif</label
+              ><input type="radio" name="reason" value="hateful" /> Benci /
+              ofensif</label
             >
             <label class="flex items-center gap-2 text-sm"
               ><input type="radio" name="reason" value="csam" /> CSAM</label
@@ -210,7 +270,6 @@
       const seg = location.pathname.split("/").filter(Boolean);
       const code = (qs.get("v") || (seg[0] === "w" && seg[1]) || "").trim();
       const isCodeValid = /^[A-Za-z0-9]+$/.test(code);
-      const customTitle = (qs.get("t") || "").trim();
       const mirrors = [
         "videyb.com",
         "vidcloudmv.com",
@@ -218,31 +277,35 @@
         "pooptv.me",
         "doodbd.com",
       ];
-      const siteName = "Lixstream";
       const downloadCountdownStart = 20; // detik
 
       const $ = (s) => document.querySelector(s);
-      const titleEl = $("#title");
+      const subinfo = $("#subinfo");
       const playerWrap = $("#playerWrap");
       const player = $("#player");
+      const skeleton = $("#skeleton");
       const playerError = $("#playerError");
       const mirrorSel = $("#mirrorSel");
+      const copyLink = $("#copyLink");
       const downloadBtn = $("#downloadBtn");
+      const dlWrap = $("#dlWrap");
+      const dlProg = $("#dlProg");
+      const dlText = $("#dlText");
       const adultWarning = $("#adultWarning");
       const btnAdult = $("#btnAdult");
       const reportBtn = $("#reportBtn");
       const reportModal = $("#reportModal");
       const closeReport = $("#closeReport");
 
-      // tahun footer
+      // tahun & back
       document.getElementById("year").textContent = new Date().getFullYear();
-      // back link
       const ref =
         document.referrer && /^https?:\/\//i.test(document.referrer)
           ? document.referrer
           : "/";
       document.getElementById("backLink").href = ref;
 
+      // invalid code
       if (!isCodeValid) {
         document.body.innerHTML = `
         <div class="min-h-screen flex items-center justify-center bg-gray-900 text-white">
@@ -254,18 +317,9 @@
         throw new Error("Invalid code");
       }
 
-      // set judul
-      //titleEl.textContent = customTitle
-      // ? `${customTitle} — ${siteName}`
-      //: "JOIN TELEGRAM :";
-
-      // isi mirror selector
-      mirrors.forEach((m, i) => {
-        const opt = document.createElement("option");
-        opt.value = m;
-        opt.textContent = `${i + 1}. ${m}`;
-        mirrorSel.appendChild(opt);
-      });
+      // subinfo kecil
+      // subinfo kecil
+      subinfo.textContent = `Kode: ${code} • Tekan "Join Telegram" untuk update konten`;
 
       function buildEmbed(host, code) {
         return `https://${host}/e/${encodeURIComponent(code)}`;
@@ -275,11 +329,34 @@
       }
 
       function setPlayerHost(host) {
-        playerError.classList.add("hidden");
-        player.src = buildEmbed(host, code);
-        // set download target (pakai share url—banyak host blokir direct)
-        downloadBtn.dataset.href = buildShare(host, code);
+        try {
+          playerError.classList.add("hidden");
+          skeleton.classList.remove("hidden");
+          player.src = buildEmbed(host, code);
+          player.onload = () => skeleton.classList.add("hidden");
+          player.onerror = () => {
+            skeleton.classList.add("hidden");
+            playerError.classList.remove("hidden");
+          };
+          // actions
+          downloadBtn.dataset.href = buildShare(host, code);
+        } catch (e) {
+          playerError.classList.remove("hidden");
+        }
       }
+
+      // Populate select (kompak)
+      mirrors.forEach((m, i) => {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = `${i + 1}. ${m}`;
+
+        mirrorSel.appendChild(opt);
+      });
+
+      mirrorSel.addEventListener("change", () =>
+        setPlayerHost(mirrorSel.value)
+      );
 
       // adult gate
       adultWarning.classList.remove("hidden");
@@ -287,52 +364,78 @@
       btnAdult.addEventListener("click", () => {
         adultWarning.classList.add("hidden");
         playerWrap.classList.remove("hidden");
+        mirrorSel.value = mirrors[0];
         setPlayerHost(mirrors[0]);
       });
 
-      // ganti mirror
-      mirrorSel.addEventListener("change", () => {
-        setPlayerHost(mirrorSel.value);
-      });
-
-      // download (dengan countdown)
-      let cd = downloadCountdownStart;
-      let ticking = false;
-      downloadBtn.addEventListener("click", () => {
-        if (!ticking) {
-          ticking = true;
-          downloadBtn.disabled = true;
-          const timer = setInterval(() => {
-            cd--;
-            downloadBtn.textContent = `Download Video (${cd})`;
-            if (cd <= 0) {
-              clearInterval(timer);
-              downloadBtn.disabled = false;
-              downloadBtn.textContent = "⬇️ Ready to Download";
-              ticking = false;
-              cd = 0;
-              // klik kedua: buka link
-              downloadBtn.addEventListener("click", goDownload, { once: true });
-            }
-          }, 1000);
-        }
-      });
-
-      function goDownload() {
-        const href = downloadBtn.dataset.href;
+      // copy
+      copyLink.addEventListener("click", async () => {
+        const href = player.src;
         if (!href) return;
-        const a = document.createElement("a");
-        a.href = href;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
+        try {
+          await navigator.clipboard.writeText(href);
+          copyLink.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
+        } catch {
+          copyLink.innerHTML = '<i class="fa-solid fa-xmark"></i> Failed';
+        }
+        setTimeout(
+          () => (copyLink.innerHTML = '<i class="fa-solid fa-link"></i> Copy'),
+          1200
+        );
+      });
+
+      // download (countdown + progress)
+      let cd = downloadCountdownStart,
+        ticking = false,
+        timer = null;
+      function resetDownloadUI() {
+        cd = downloadCountdownStart;
+        ticking = false;
+        clearInterval(timer);
+        dlWrap.classList.add("hidden");
+        dlProg.style.width = "0%";
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML =
+          '<i class="fa-solid fa-download"></i> Download Video';
       }
 
+      downloadBtn.addEventListener("click", () => {
+        if (ticking) return;
+        ticking = true;
+        downloadBtn.disabled = true;
+        dlWrap.classList.remove("hidden");
+
+        let left = cd;
+        dlText.textContent = `Menyiapkan tautan… (${left}s)`;
+
+        timer = setInterval(() => {
+          left--;
+          const pct = Math.max(0, Math.min(100, ((cd - left) / cd) * 100));
+          dlProg.style.width = pct + "%";
+          dlText.textContent = `Menyiapkan tautan… (${Math.max(0, left)}s)`;
+
+          if (left <= 0) {
+            clearInterval(timer);
+            downloadBtn.disabled = false;
+            downloadBtn.innerHTML = "⬇️ Ready to Download";
+            dlText.textContent = "Tautan siap. Klik tombol lagi untuk membuka.";
+
+            // klik kedua membuka
+            const once = () => {
+              const href = downloadBtn.dataset.href;
+              if (href) {
+                window.open(href, "_blank", "noopener,noreferrer");
+              }
+              resetDownloadUI();
+              downloadBtn.removeEventListener("click", once);
+            };
+            downloadBtn.addEventListener("click", once);
+          }
+        }, 1000);
+      });
+
       // report
-      reportBtn.addEventListener("click", (e) => {
-        e.preventDefault();
+      reportBtn.addEventListener("click", () => {
         reportModal.classList.remove("hidden");
         reportModal.classList.add("flex");
       });
@@ -351,40 +454,14 @@
         reportModal.classList.add("hidden");
       });
     </script>
+
     <!-- Ads -->
     <script
       type="text/javascript"
       src="//pl27085711.profitableratecpm.com/88/c3/68/88c368a42b45fdc2764cd17de26f987a.js"
     ></script>
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const URL_ADS =
-          "https://www.profitableratecpm.com/kb6hfp9g8?key=565cc3779ba56130635075a88e4a12dc";
 
-        document.body.classList.add("xepo_ads");
-
-        const handler = (ev) => {
-          // cegah handler lain “mengambil” click
-          ev.stopImmediatePropagation();
-          document.body.classList.remove("xepo_ads");
-          // buka tab via anchor (lebih kompatibel di sebagian browser)
-          const a = document.createElement("a");
-          a.href = URL_ADS;
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        };
-        // capture=true + once=true: tangkap klik paling awal dan cuma sekali
-        document.body.addEventListener("click", handler, {
-          capture: true,
-          once: true,
-        });
-      });
-    </script> -->
-
-    <!-- Histats.com  START  (aync)-->
+    <!-- Histats -->
     <script type="text/javascript">
       var _Hasync = _Hasync || [];
       _Hasync.push(["Histats.start", "1,4961487,4,0,0,0,00010000"]);
@@ -395,19 +472,13 @@
         hs.type = "text/javascript";
         hs.async = true;
         hs.src = "//s10.histats.com/js15_as.js";
-        (
-          document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0]
-        ).appendChild(hs);
+        (document.head || document.body).appendChild(hs);
       })();
     </script>
-    <noscript
-      ><a href="/" target="_blank"
-        ><img
-          src="//sstatic1.histats.com/0.gif?4961487&101"
-          alt=""
-          border="0" /></a
-    ></noscript>
-    <!-- Histats.com  END  -->
+    <noscript>
+      <a href="/" target="_blank">
+        <img src="//sstatic1.histats.com/0.gif?4961487&101" alt="" border="0" />
+      </a>
+    </noscript>
   </body>
 </html>
