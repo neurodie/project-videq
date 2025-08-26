@@ -11,7 +11,7 @@ from urllib3.util.retry import Retry
 
 # ===== Konfigurasi (override via ENV) =====
 API_URL = os.getenv("API_URL", "https://api.luxsioab.com/directory/info")
-TOKEN = os.getenv("TOKEN", "84ba4951-3127-4e10-ac70-91c05e722945")
+TOKEN = os.getenv("TOKEN", "49b145b5-9b77-493f-88f8-7f6c98dcc01f")
 DIRECTORY_ID = os.getenv("DIRECTORY_ID", "a82f1dd8-c5bc-4649-bc1c-4639031e4e74")
 PUBLIC_LIST_URL = os.getenv("PUBLIC_LIST_URL", "https://api.luxsioab.com/pub/api/file/page")
 PUBLIC_KEY = os.getenv("PUBLIC_KEY", "QSi9UNeop/2n1gS9+rxXc3NAOu2cSQabcHwS0qeQZcM=")
@@ -24,39 +24,21 @@ CLEAN_ENABLED = os.getenv("CLEAN_ENABLED", "1") != "0"
 REMOVE_TELE_WORDS = os.getenv("REMOVE_TELE_WORDS", "1") == "1"
 CLEAN_OUTFILE = os.getenv("CLEAN_OUTFILE", "db_clean.json")
 
-import re
-
-def build_pattern(remove_tele_words: bool) -> re.Pattern:
-    """
-    Pola:
-      - @mention umum: @user atau @[ ... ] atau '@  user'
-      - tautan t.me / telegram.me
-      - 'join tele' / 'join telegram'
-      - (opsional) kata berdiri sendiri 'telegram' / 'tele'
-    """
-    # bagian opsional
-    tele_words = r"|(?:\btelegram\b|\btele\b)" if remove_tele_words else ""
-
-    # inti pola (tanpa format/f-string biar aman dari { } literal)
-    base = r"""
-    (                                   # === HAPUS ===
-        @\s*(?:\[[^\]]*?\]              # @[ ... ]
-        |[^\s,.;:!?\"'\)\]\}]+)         # atau @username
-      | https?://(?:t\.me|telegram\.me)/[^\s"'<>\)]+
-      | \bjoin\s*tele(?:gram)?\b
-    """
-
-    # gabungkan
-    pattern = base + tele_words + r"""
-    )
-    """
-
-    return re.compile(pattern, re.UNICODE | re.IGNORECASE | re.VERBOSE)
-
 ZERO_WIDTH_RE = re.compile(r"[\u200B-\u200F\u202A-\u202E\u2060-\u2063\uFEFF]", re.UNICODE)
 EMPTY_BRACKET_RE = re.compile(r"\[\s*\]", re.UNICODE)
 MULTISPACE_RE = re.compile(r"\s{2,}", re.UNICODE)
 SPACE_BEFORE_PUNC_RE = re.compile(r"\s+([,.;:!?])", re.UNICODE)
+
+def build_pattern(remove_tele_words: bool) -> re.Pattern:
+    tele_words = r"|(?:\btelegram\b|\btele\b)" if remove_tele_words else ""
+    base = r"""
+    (
+        @\s*(?:\[[^\]]*?\] | [^\s,.;:!?\"'\)\]\}]+)
+      | https?://(?:t\.me|telegram\.me)/[^\s"'<>\)]+
+      | \bjoin\s*tele(?:gram)?\b
+    """
+    pattern = base + tele_words + r")"
+    return re.compile(pattern, re.UNICODE | re.IGNORECASE | re.VERBOSE)
 
 def clean_text(s: Any, pattern: re.Pattern) -> str:
     if not isinstance(s, str):
@@ -180,28 +162,56 @@ def fetch_all_public_files(session: requests.Session, dir_id: str) -> List[Dict[
         time.sleep(0.15)
     return out
 
+# ===== Helper ambil 'files' dari /directory/info (kadang di root, kadang di data) =====
+def extract_info_files(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
+    if not isinstance(payload, dict):
+        return []
+    if isinstance(payload.get("files"), list):
+        return payload.get("files") or []
+    data = payload.get("data")
+    if isinstance(data, dict) and isinstance(data.get("files"), list):
+        return data.get("files") or []
+    # fallback
+    return []
+
 def main():
     session = make_session()
 
-    # 1) Ambil daftar items di directory (type DIRECTORY saja)
-    req_body = {
-        "directory_id": DIRECTORY_ID,
-        "page": 0,
-        "size": 100,
-        "sort": [],
-    }
+    # === 1) Ambil daftar items di directory/info dengan PAGINATION ===
+    logging.info("Memuat daftar folder dari API_URL ...")
+    size = 100
+    page = 0
+    all_entries: List[Dict[str, Any]] = []
+
     headers = {
         "Content-Type": "application/json",
         "X-Token": TOKEN,
     }
 
-    logging.info("Memuat daftar folder dari API_URL ...")
-    dir_resp = fetch_json(session, API_URL, method="POST", headers=headers, json_body=req_body)
+    while True:
+        req_body = {
+            "directory_id": DIRECTORY_ID,
+            "page": page,
+            "size": size,
+            "sort": [],
+        }
+        info_resp = fetch_json(session, API_URL, method="POST", headers=headers, json_body=req_body)
+        entries = extract_info_files(info_resp)
+        got = len(entries)
+        logging.info(f"/directory/info page={page} size={size} got={got} (acc={len(all_entries) + got})")
+        all_entries.extend(entries)
 
-    all_files = dir_resp.get("files") or []
-    folders = [it for it in all_files if is_directory(it)]
-    logging.info(f"Total entries: {len(all_files)} | Folders terdeteksi: {len(folders)}")
+        # stop jika kurang dari size
+        if got < size:
+            break
 
+        page += 1
+        time.sleep(0.2)
+
+    folders = [it for it in all_entries if is_directory(it)]
+    logging.info(f"Total entries: {len(all_entries)} | Folders terdeteksi: {len(folders)}")
+
+    # === 2) Untuk tiap folder, ambil files publik (juga sudah paginated) ===
     results: List[Dict[str, Any]] = []
     for idx, item in enumerate(folders, start=1):
         dir_id = item["id"]
@@ -221,12 +231,12 @@ def main():
         "results": results,
     }
 
-    # 2) Simpan mentah
+    # === 3) Simpan mentah
     with open(OUTFILE, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     logging.info(f"Tersimpan (raw) ke {OUTFILE}")
 
-    # 3) (Opsional) Bersihkan payload & simpan clean
+    # === 4) (Opsional) Bersihkan payload & simpan clean
     if CLEAN_ENABLED:
         pattern = build_pattern(REMOVE_TELE_WORDS)
         cleaned = deep_clean(payload, pattern)
@@ -251,4 +261,8 @@ def main():
 
 if __name__ == "__main__":
     main()
-    os.remove("db.json")
+    # opsional – tetap sesuai skripmu, aman-in kalau file nggak ada
+    try:
+        os.remove("db.json")
+    except FileNotFoundError:
+        pass
