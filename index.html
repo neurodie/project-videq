@@ -1,683 +1,939 @@
 <!DOCTYPE html>
-<html lang="id" class="dark">
+<html lang="id">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>BOKEP INDO</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PopsHd | Kumpulan Bokep Indo Terbaru dan Paling Dicari</title>
+
+    <!-- SEO -->
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,noai,noimageai"
+    />
+    <meta
+      name="description"
+      content="Situs Nonton dan Download Bokep Indonesia Viral Terbaru Gratis Colmek, Hijab, Cewek Indo Terlengkap dan Terbaik Full HD"
+    />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PopsHd" />
+    <meta
+      property="og:title"
+      content="PopsHd | Kumpulan Bokep Indo Terbaru dan Paling Dicari"
+    />
+    <meta
+      property="og:description"
+      content="Situs Nonton dan Download Bokep Indonesia Viral Terbaru Gratis Colmek, Hijab, Cewek Indo Terlengkap dan Terbaik Full HD"
+    />
+    <meta property="og:image" content="/assets/logo.png" />
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="PopsHd | Kumpulan Bokep Indo Terbaru dan Paling Dicari"
+    />
+    <meta
+      name="twitter:description"
+      content="Situs Nonton dan Download Bokep Indonesia Viral Terbaru Gratis Colmek, Hijab, Cewek Indo Terlengkap dan Terbaik Full HD"
+    />
+    <meta name="twitter:image" content="/assets/logo.png" />
+    <link rel="icon" href="/assets/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo.png" />
+    <link rel="manifest" href="https://popshd.site/assets/site.webmanifest" />
+    <meta name="theme-color" content="#222831" />
+    <meta name="msapplication-TileColor" content="#222831" />
+    <meta
+      name="juicyads-site-verification"
+      content="b987be7d8888b1b6daa44df28f3bb753"
+    />
+    <!-- (opsional) SVG tajam -->
     <link
       rel="icon"
-      type="image/x-icon"
-      href="https://lixstream.com/favicon.ico"
+      type="image/svg+xml"
+      href="https://popshd.site/assets/PopsHd-badge-flat.svg"
     />
+
+    <!-- Perf: preconnect fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://myaff.pages.dev" />
+    <link rel="preconnect" href="https://effectivegatecpm.com" />
+    <!-- Tailwind + custom palette -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            fontFamily: { inter: ["Inter", "ui-sans-serif", "system-ui"] },
-            colors: { brand: { 600: "#4f46e5" }, accent: { 400: "#facc15" } },
+            fontFamily: {
+              sans: [
+                "Poppins",
+                "ui-sans-serif",
+                "system-ui",
+                "Segoe UI",
+                "Roboto",
+                "Helvetica Neue",
+                "Arial",
+                "Noto Sans",
+              ],
+            },
+            colors: {
+              ink: "#222831", // page bg
+              panel: "#393E46", // header/panel bg
+              cyan: "#00ADB5", // accent
+              paper: "#EEEEEE", // light text/bg
+              line: "rgba(238,238,238,.12)", // subtle borders
+            },
+            boxShadow: { soft: "0 6px 24px rgba(0,0,0,.12)" },
+            borderRadius: { xl: "12px", "2xl": "16px" },
           },
         },
       };
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Ads infra (hanya koneksi awal & expose; tidak auto-open di header) -->
+    <link rel="dns-prefetch" href="https://myaff.pages.dev" />
+    <link rel="preconnect" href="https://myaff.pages.dev" crossorigin />
+    <script>
+      window.popupPlayerUrl = "https://myaff.pages.dev/";
+    </script>
+
+    <!-- Fonts & Icons -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
     <style>
-      :root {
-        color-scheme: dark;
+      /* scrollbar & selection */
+      ::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
       }
-      body {
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-          Roboto, "Helvetica Neue", Arial;
-      }
-      .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .folder-card {
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
-      }
-      .folder-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-      }
-      .thumb-wrap {
-        position: relative;
-        aspect-ratio: 16/9;
-        overflow: hidden;
-      }
-      @supports not (aspect-ratio: 16/9) {
-        .thumb-wrap::before {
-          content: "";
-          display: block;
-          padding-bottom: 56.25%;
-        }
-      }
-      .thumb-wrap > img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .line-clamp-1 {
-        -webkit-line-clamp: 1;
-      }
-      .line-clamp-2 {
-        -webkit-line-clamp: 2;
-      }
-      .line-clamp-1,
-      .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
+      ::-webkit-scrollbar-thumb {
+        background: #00adb5;
         border-radius: 9999px;
-        padding: 0.5rem 0.875rem;
       }
-      .btn-outline {
-        border: 1px solid #374151;
-        color: #e5e7eb;
+      ::selection {
+        background: #00adb5;
+        color: #0b0f14;
       }
-      .btn-outline:hover {
-        background: #111827;
+
+      /* ====== OPTIONAL: ADS PLACEHOLDERS (dipakai beberapa halaman) ====== */
+      /*.ad-slot {
+        display: grid;
+        place-items: center;
+        border: 1px dashed rgba(0, 173, 181, 0.45);
+        color: #eeeeee99;
+        background: repeating-linear-gradient(
+          45deg,
+          #2a3138,
+          #2a3138 10px,
+          #262c33 10px,
+          #262c33 20px
+        );
+        border-radius: 12px;
+        font: 500 12px/1.2 Poppins, ui-sans-serif, system-ui;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
       }
-      .badge {
-        --tw-ring-color: rgba(0, 0, 0, 0.25);
+    */
+      .ad-top {
+        height: 90px;
       }
-      .folder-thumbnail {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 16/9;
-      }
-      .video-wrapper {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16/9;
-        overflow: hidden;
-      }
-      @supports not (aspect-ratio: 16/9) {
-        .video-wrapper {
-          padding-bottom: 56.25%;
+      @media (max-width: 640px) {
+        .ad-top {
+          height: 100px;
         }
+      }
+      .ad-rect {
+        height: 280px;
+      }
+      .ad-sticky {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 56px;
+        z-index: 40;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        border-radius: 0;
+        background: #1f242aee;
+        backdrop-filter: saturate(120%) blur(6px);
+      }
+      .ad-close {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        border: 0;
+        background: #00adb5;
+        color: #0b0f14;
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
       }
     </style>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+      integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("body").addClass("xepo_ads");
+      });
+
+      $(document).on("click", ".xepo_ads", function (e) {
+        $(this).removeClass("xepo_ads");
+        //ubah google dengan ads direct link
+        window.open("https://myaff.pages.dev/", "_blank");
+      });
+    </script>
+    <script
+      type="text/javascript"
+      src="//pl27085711.effectivegatecpm.com/88/c3/68/88c368a42b45fdc2764cd17de26f987a.js"
+    ></script>
   </head>
-  <body class="bg-gray-900 text-white font-inter" data-version="v2.0.0">
-    <div class="mx-auto max-w-6xl px-4 py-6">
-      <!-- Header -->
-      <header class="mb-6 flex items-center justify-between">
-        <a
-          href="/"
-          class="text-2xl font-extrabold text-accent-400 tracking-tight"
-          >BOKEP INDO</a
+
+  <body
+    class="bg-ink text-[14.5px] sm:text-[15px] text-paper/90 font-sans antialiased"
+  >
+    <!-- Sticky header -->
+    <header
+      class="sticky top-0 z-30 border-b border-line bg-panel/90 backdrop-blur-md"
+    >
+      <div class="mx-auto max-w-6xl px-4 py-2 flex items-center gap-3">
+        <!-- Mobile hamburger -->
+        <button
+          id="btnHamburger"
+          class="sm:hidden inline-flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-panel/80"
+          aria-label="Buka menu"
+          aria-controls="mobilePanel"
+          aria-expanded="false"
         >
-        <nav class="flex items-center gap-3 text-sm text-gray-300">
-          <a
-            href="https://t.me/+4rXTjL_5sphkYzk1"
-            target="_blank"
-            class="inline-flex items-center gap-2 rounded-xl border border-gray-700 px-3 py-2 hover:bg-gray-800"
+          <i
+            id="iconOpen"
+            class="fa-solid fa-bars text-paper/80 text-[15px]"
+            aria-hidden="true"
+          ></i>
+          <i
+            id="iconClose"
+            class="fa-solid fa-xmark text-paper/80 text-[15px] hidden"
+            aria-hidden="true"
+          ></i>
+        </button>
+
+        <!-- Brand: logo + wordmark -->
+        <a
+          href="https://popshd.site/"
+          class="flex items-center gap-3 shrink-0"
+          aria-label="PopsHd"
+        >
+          <span
+            class="text-[22px] md:text-[24px] lg:text-[26px] font-semibold leading-none tracking-[-0.01em]"
           >
-            <i class="fa-brands fa-telegram text-lg text-sky-400"></i>
-            <span>Join Telegram</span>
+            <span class="text-paper">Pops</span
+            ><span class="text-cyan">HD</span>
+          </span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav
+          class="ml-2 md:ml-3 hidden sm:flex items-center gap-1.5 text-[13px]"
+        >
+          <a
+            href="https://popshd.site"
+            class="relative px-2.5 py-1.5 rounded-lg bg-cyan/15 text-paper"
+            aria-current="page"
+          >
+            Home
+            <span
+              class="absolute left-2 right-2 -bottom-[3px] h-[2px] bg-cyan/70 rounded-full"
+            ></span>
+          </a>
+
+          <a
+            href="#"
+            class="relative px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-paper/70"
+          >
+            Popular
+          </a>
+
+          <a
+            href="#"
+            class="relative px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-paper/70"
+          >
+            JAV
           </a>
         </nav>
-      </header>
 
-      <!-- Alert -->
-      <div
-        id="alert"
-        class="hidden rounded-md border border-yellow-500/50 bg-yellow-900/20 p-3 text-sm text-yellow-200"
-      ></div>
-
-      <!-- Hero / Search -->
-      <section
-        class="mb-5 rounded-2xl bg-gray-800/40 ring-1 ring-gray-800 p-4 sm:p-6"
-      >
-        <div
-          class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+        <!-- Search -->
+        <form
+          action="https://popshd.site/index.php"
+          method="get"
+          class="ml-auto hidden sm:block flex-1 max-w-[720px]"
         >
-          <div>
-            <h1 class="text-xl sm:text-2xl font-bold">FOLDER BOKEP TERBARU</h1>
-            <p class="text-sm text-gray-400">
-              Temukan koleksi terbaru atau yang paling populer.
-            </p>
+          <div class="relative">
+            <input
+              id="globalSearch"
+              name="q"
+              value=""
+              class="w-full rounded-lg border border-line bg-[#2c333b] text-[13px] pl-9 pr-8 py-2 placeholder:text-paper/40 focus:outline-none focus:ring-2 focus:ring-cyan/50"
+              placeholder="Search titles..."
+              aria-label="Cari judul"
+            />
+            <i
+              class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-paper/40 text-[13px]"
+              aria-hidden="true"
+            ></i>
+            <button
+              type="button"
+              id="clearSearch"
+              class="absolute right-2 top-1/2 -translate-y-1/2 text-paper/40 hover:text-paper/70 text-[13px] hidden"
+              aria-label="Bersihkan pencarian"
+            >
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+          </div>
+        </form>
+
+        <!-- CTAs (Desktop) -->
+        <div class="ml-3 hidden sm:flex items-center gap-2">
+          <a
+            href="https://popshd.site/"
+            class="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-cyan/90 px-3 py-1.5 text-[13px] font-medium text-ink hover:bg-cyan shadow-soft"
+          >
+            <i
+              class="fa-regular fa-circle-play text-[13px]"
+              aria-hidden="true"
+            ></i>
+            Explore
+          </a>
+
+          <!-- Need ADS? to Telegram -->
+          <a
+            href="https://t.me/H9STREAM"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="shrink-0 inline-flex items-center gap-1.5 rounded-lg border border-line bg-panel/80 hover:bg-white/5 px-3 py-1.5 text-[13px] font-medium text-paper/90"
+          >
+            <i class="fa-brands fa-telegram text-[14px]" aria-hidden="true"></i>
+            JOIN TEEGRAM
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile panel -->
+      <div
+        id="mobilePanel"
+        class="sm:hidden hidden border-t border-line bg-panel/95"
+      >
+        <div class="mx-auto max-w-6xl px-4 py-3 space-y-3">
+          <nav class="flex items-center gap-2 text-[14px]">
+            <a
+              href="https://popshd.site/"
+              class="px-3 py-1.5 rounded-lg bg-cyan/15 text-paper"
+              aria-current="page"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="px-3 py-1.5 rounded-lg hover:bg-white/5 text-paper/70"
+              >Popular</a
+            >
+            <a
+              href="#"
+              class="px-3 py-1.5 rounded-lg hover:bg-white/5 text-paper/70"
+              >JAV</a
+            >
+          </nav>
+
+          <!-- CTA (Mobile) -->
+          <div class="flex items-center gap-2 pt-1">
+            <a
+              href="https://popshd.site/"
+              class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-cyan/90 px-3 py-2 text-[13px] font-medium text-ink hover:bg-cyan shadow-soft"
+            >
+              <i
+                class="fa-regular fa-circle-play text-[13px]"
+                aria-hidden="true"
+              ></i>
+              Explore
+            </a>
+            <a
+              href="https://t.me/H9STREAM"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-1.5 rounded-lg border border-line bg-panel/80 hover:bg-white/5 px-3 py-2 text-[13px] font-medium text-paper/90"
+            >
+              <i
+                class="fa-brands fa-telegram text-[14px]"
+                aria-hidden="true"
+              ></i>
+              Need ADS?
+            </a>
           </div>
 
-          <form
-            id="searchForm"
-            class="flex w-full sm:w-auto items-center gap-2"
-            autocomplete="off"
-          >
-            <input type="hidden" name="per_page" id="sf_per_page" value="12" />
-            <input type="hidden" name="sort" id="sf_sort" value="new" />
-            <input type="hidden" name="view" id="sf_view" value="grid" />
-            <input
-              class="w-full sm:w-80 rounded-xl bg-gray-900 px-3 py-2 text-sm ring-1 ring-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-600"
-              type="search"
-              name="q"
-              id="sf_q"
-              placeholder="Search folder or video title..."
-              value=""
-            />
-            <button class="btn btn-outline whitespace-nowrap" type="submit">
-              <span>Search</span>
-            </button>
+          <form action="https://popshd.site/index.php" method="get">
+            <div class="relative mt-2">
+              <input
+                name="q"
+                value=""
+                class="w-full rounded-lg border border-line bg-[#2c333b] text-[13px] pl-9 pr-3 py-2 placeholder:text-paper/40 focus:outline-none focus:ring-2 focus:ring-cyan/50"
+                placeholder="Search titles..."
+                aria-label="Cari judul (mobile)"
+              />
+              <i
+                class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-paper/40 text-[13px]"
+                aria-hidden="true"
+              ></i>
+            </div>
           </form>
         </div>
-      </section>
+      </div>
+    </header>
 
-      <!-- Controls -->
-      <div
-        class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
-      >
-        <div class="text-sm text-gray-400">
-          Total folders:
-          <span id="totalCount" class="text-white font-semibold">0</span>
+    <!-- Page wrapper -->
+    <main class="mx-auto max-w-6xl px-4 py-6">
+      <script>
+        // ===== Mobile menu toggle + a11y =====
+        (() => {
+          const btn = document.getElementById("btnHamburger");
+          const panel = document.getElementById("mobilePanel");
+          const iOpen = document.getElementById("iconOpen");
+          const iClose = document.getElementById("iconClose");
+
+          if (!btn || !panel || !iOpen || !iClose) return;
+
+          const syncIcons = () => {
+            const isHidden = panel.classList.contains("hidden");
+            iOpen.classList.toggle("hidden", !isHidden);
+            iClose.classList.toggle("hidden", isHidden);
+            btn.setAttribute("aria-expanded", String(!isHidden));
+          };
+
+          const closePanel = () => {
+            panel.classList.add("hidden");
+            syncIcons();
+          };
+
+          // Toggle click
+          btn.addEventListener("click", () => {
+            panel.classList.toggle("hidden");
+            syncIcons();
+          });
+
+          // Close on Escape
+          window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !panel.classList.contains("hidden")) {
+              closePanel();
+            }
+          });
+
+          // Close on outside click
+          document.addEventListener("click", (e) => {
+            if (panel.classList.contains("hidden")) return;
+            const withinButton = btn.contains(e.target);
+            const withinPanel = panel.contains(e.target);
+            if (!withinButton && !withinPanel) closePanel();
+          });
+
+          // Close when clicking any nav link inside panel
+          panel.addEventListener("click", (e) => {
+            const a = e.target.closest("a[href]");
+            if (a) closePanel();
+          });
+
+          syncIcons();
+        })();
+
+        // ===== Clear search =====
+        (() => {
+          const clearBtn = document.getElementById("clearSearch");
+          const input = document.getElementById("globalSearch");
+          if (!clearBtn || !input) return;
+
+          const toggle = () =>
+            clearBtn.classList.toggle("hidden", input.value === "");
+          input.addEventListener("input", toggle);
+          clearBtn.addEventListener("click", () => {
+            input.value = "";
+            toggle();
+            if (input.form) input.form.submit();
+          });
+          toggle();
+        })();
+
+        // ===== Keyboard "/" to focus search =====
+        (() => {
+          const input = document.getElementById("globalSearch");
+          if (!input) return;
+          window.addEventListener("keydown", (e) => {
+            if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey) {
+              const t = e.target,
+                isField =
+                  t &&
+                  (t.tagName === "INPUT" ||
+                    t.tagName === "TEXTAREA" ||
+                    t.isContentEditable);
+              if (!isField) {
+                e.preventDefault();
+                input.focus();
+              }
+            }
+          });
+        })();
+      </script>
+
+      <!-- ====== CONTROLS BAR ====== -->
+      <section class="mb-5 flex flex-wrap items-center gap-2">
+        <div class="text-[13px] text-paper/60">
+          Total video:
+          <span id="totalVideos" class="text-paper font-semibold">0</span>
         </div>
 
         <form
-          id="controlForm"
-          class="flex flex-wrap items-center gap-2 text-sm"
+          method="get"
+          action="/"
+          class="ml-auto flex items-center gap-2 text-[13px]"
         >
-          <input type="hidden" name="q" id="cf_q" value="" />
-          <input type="hidden" name="page" id="cf_page" value="1" />
+          <input type="hidden" name="q" value="" />
+          <input type="hidden" name="page" value="1" />
 
-          <label>Sort</label>
-          <select
+          <!-- <select
             name="sort"
-            id="cf_sort"
-            class="rounded-lg bg-gray-900 px-2 py-1 ring-1 ring-gray-800"
+            class="rounded-lg border border-line bg-[#2c333b] text-paper/80 px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-cyan/40"
+            onchange="this.form.submit()"
           >
-            <option value="new">Newest</option>
+            <option value="new" selected>Newest</option>
             <option value="popular">Popular</option>
             <option value="az">A–Z</option>
-          </select>
+          </select> -->
 
-          <label>Per page</label>
-          <select
+          <!-- <select
             name="per_page"
-            id="cf_per_page"
-            class="rounded-lg bg-gray-900 px-2 py-1 ring-1 ring-gray-800"
+            class="rounded-lg border border-line bg-[#2c333b] text-paper/80 px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-cyan/40"
+            onchange="this.form.submit()"
           >
-            <option value="12">12</option>
+            <option value="12" selected>12</option>
             <option value="18">18</option>
             <option value="24">24</option>
             <option value="36">36</option>
-          </select>
+          </select> -->
 
-          <input type="hidden" name="view" id="cf_view" value="grid" />
-          <button
-            class="rounded-lg border border-gray-700 px-3 py-1 hover:bg-gray-800"
-            type="submit"
+          <noscript
+            ><button class="rounded-lg border border-line px-3 py-1.5">
+              Apply
+            </button></noscript
           >
-            Apply
-          </button>
         </form>
-      </div>
+      </section>
 
-      <!-- View Switch -->
-      <div class="mb-2 flex items-center justify-end gap-2">
-        <a
-          id="btnGrid"
-          href="#"
-          class="inline-flex items-center gap-2 rounded-xl border px-3 py-1 text-sm bg-gray-800 border-gray-700"
-        >
-          <i class="fa-solid fa-grip"></i><span>Grid</span>
-        </a>
-        <a
-          id="btnList"
-          href="#"
-          class="inline-flex items-center gap-2 rounded-xl border px-3 py-1 text-sm border-gray-700 hover:bg-gray-800"
-        >
-          <i class="fa-solid fa-list"></i><span>List</span>
-        </a>
-      </div>
-
-      <!-- Skeleton loader -->
+      <!-- ====== GRID LISTING (DI-GENERATE DARI ARRAY) ====== -->
       <div
-        id="skeleton"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
-      >
-        <template id="skeleton-card">
-          <div
-            class="bg-gray-800 rounded-lg overflow-hidden shadow-lg animate-pulse"
-          >
-            <div
-              class="w-full"
-              style="
-                aspect-ratio: 16/9;
-                background: linear-gradient(
-                  90deg,
-                  #374151 25%,
-                  #4b5563 37%,
-                  #374151 63%
-                );
-                background-size: 400% 100%;
-              "
-            ></div>
-            <div class="p-4 space-y-2">
-              <div class="h-5 bg-gray-700 rounded"></div>
-              <div class="h-4 w-24 bg-gray-700 rounded"></div>
+        id="videoGrid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      ></div>
+
+      <script>
+        const BASE_VIDEO_PAGE = "https://popshd.site/v/";
+
+        let allVideos = [];
+        let currentPage = 1;
+        const perPage = 12; // jumlah grid per halaman
+
+        // random views range 100–500
+        function getRandomViews() {
+          return Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+        }
+
+        async function loadVideosFromJson() {
+          try {
+            const res = await fetch("./db/db_final.json");
+            if (!res.ok) {
+              console.error("Gagal load db_final.json", res.status);
+              return;
+            }
+
+            let data = await res.json();
+            if (!Array.isArray(data)) data = [data];
+
+            // map JSON ke format render
+            allVideos = data.map((item) => ({
+              href: BASE_VIDEO_PAGE + item.code,
+              title: item.title,
+              thumb: item.thumb_url,
+              views: getRandomViews(),
+              date: "Nov 14, 2025",
+            }));
+
+            updateTotalVideos();
+            renderPage(currentPage);
+            renderPagination();
+          } catch (err) {
+            console.error("Error parsing db_final.json", err);
+          }
+        }
+
+        function updateTotalVideos() {
+          const totalSpan = document.getElementById("totalVideos");
+          if (totalSpan)
+            totalSpan.textContent = allVideos.length.toLocaleString("en-US");
+        }
+
+        function renderPage(page) {
+          const grid = document.getElementById("videoGrid");
+          if (!grid) return;
+
+          const start = (page - 1) * perPage;
+          const end = start + perPage;
+          const items = allVideos.slice(start, end);
+
+          grid.innerHTML = "";
+
+          items.forEach((video) => {
+            const card = document.createElement("a");
+            card.href = video.href;
+            card.className =
+              "group rounded-2xl overflow-hidden border border-line bg-[#2c333b] hover:-translate-y-[2px] hover:shadow-soft transition";
+            card.setAttribute("aria-label", video.title);
+
+            card.innerHTML = `
+        <div class="relative">
+          <div class="aspect-[16/9] bg-black/30 overflow-hidden">
+            <img src="${video.thumb}" alt="${video.title}"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          </div>
+
+          <div class="absolute inset-0 grid place-items-center pointer-events-none">
+            <div class="h-10 w-10 grid place-items-center rounded-full bg-black/55 ring-1 ring-black/40">
+              <i class="fa-solid fa-play text-cyan"></i>
             </div>
           </div>
-        </template>
-      </div>
 
-      <!-- GRID -->
-      <div id="gridView" class="hidden">
-        <div
-          id="grid"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
-        ></div>
-      </div>
-
-      <!-- LIST -->
-      <div id="listView" class="hidden">
-        <div class="overflow-hidden rounded-2xl ring-1 ring-gray-800">
-          <div
-            class="hidden grid-cols-12 bg-gray-900 px-4 py-3 text-sm text-gray-300 sm:grid"
-          >
-            <div class="col-span-7">Folder</div>
-            <div class="col-span-2 text-right">Videos</div>
-            <div class="col-span-3 text-right pr-2">Open</div>
+          <div class="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full px-2 py-1 text-[12px] ring-1"
+            style="background:rgba(0,0,0,.55); border-color:rgba(0,0,0,.35); color:#EEEEEE;">
+            <i class="fa-regular fa-eye"></i><span>${video.views}</span>
           </div>
-          <ul id="list" class="divide-y divide-gray-800 bg-gray-950/40"></ul>
+
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent p-3">
+            <h3 class="text-[13.5px] font-semibold line-clamp-1 text-paper">${video.title}</h3>
+          </div>
         </div>
-      </div>
 
-      <!-- Empty state -->
-      <div id="empty" class="hidden mt-8 text-gray-400">
-        Belum ada data video.
-      </div>
+        <div class="px-3 py-2 text-[12.5px] text-paper/70">
+          ${video.date}
+        </div>
+      `;
 
-      <!-- Pagination -->
+            grid.appendChild(card);
+          });
+        }
+
+        function renderPagination() {
+          const nav = document.getElementById("paginationNav");
+          if (!nav) return;
+
+          const totalPages = Math.max(1, Math.ceil(allVideos.length / perPage));
+          nav.innerHTML = "";
+
+          const makeBtn = (label, page, options = {}) => {
+            const {
+              disabled = false,
+              active = false,
+              isEllipsis = false,
+            } = options;
+
+            if (isEllipsis) {
+              const span = document.createElement("span");
+              span.className = "px-2 text-paper/50";
+              span.textContent = "…";
+              return span;
+            }
+
+            const a = document.createElement("a");
+            a.href = "#";
+            a.dataset.page = page;
+            a.className =
+              "rounded-full px-3 py-1.5 text-[13px] border border-line text-paper/80 hover:bg-white/5";
+
+            if (disabled) {
+              a.classList.add("opacity-50", "pointer-events-none");
+            }
+
+            if (active) {
+              a.className =
+                "rounded-full px-3 py-1.5 text-[13px] bg-cyan/90 text-ink border border-cyan/90";
+            }
+
+            a.textContent = label;
+            return a;
+          };
+
+          // Prev button
+          const prev = makeBtn("Prev", currentPage - 1, {
+            disabled: currentPage === 1,
+          });
+          prev.innerHTML = `<i class="fa-solid fa-chevron-left"></i><span class="ml-1">Prev</span>`;
+          nav.appendChild(prev);
+
+          // Kalau halaman sedikit, tampilkan semua
+          if (totalPages <= 7) {
+            for (let p = 1; p <= totalPages; p++) {
+              const btn = makeBtn(String(p), p, { active: p === currentPage });
+              nav.appendChild(btn);
+            }
+          } else {
+            // Selalu tampilkan halaman 1
+            nav.appendChild(makeBtn("1", 1, { active: currentPage === 1 }));
+
+            // Ellipsis setelah 1 kalau currentPage > 4
+            if (currentPage > 4) {
+              nav.appendChild(makeBtn("...", null, { isEllipsis: true }));
+            }
+
+            // Halaman sekitar current (current-1, current, current+1)
+            const start = Math.max(2, currentPage - 1);
+            const end = Math.min(totalPages - 1, currentPage + 1);
+
+            for (let p = start; p <= end; p++) {
+              nav.appendChild(
+                makeBtn(String(p), p, { active: p === currentPage })
+              );
+            }
+
+            // Ellipsis sebelum last kalau currentPage < totalPages - 3
+            if (currentPage < totalPages - 3) {
+              nav.appendChild(makeBtn("...", null, { isEllipsis: true }));
+            }
+
+            // Halaman terakhir
+            nav.appendChild(
+              makeBtn(String(totalPages), totalPages, {
+                active: currentPage === totalPages,
+              })
+            );
+          }
+
+          // Next button
+          const next = makeBtn("Next", currentPage + 1, {
+            disabled: currentPage === totalPages,
+          });
+          next.innerHTML = `<span class="mr-1">Next</span><i class="fa-solid fa-chevron-right"></i>`;
+          nav.appendChild(next);
+        }
+
+        // Delegasi klik pagination
+        document.addEventListener("click", (e) => {
+          const target = e.target.closest("#paginationNav [data-page]");
+          if (!target) return;
+
+          e.preventDefault();
+          const page = parseInt(target.dataset.page, 10);
+          const totalPages = Math.max(1, Math.ceil(allVideos.length / perPage));
+
+          if (!isNaN(page) && page >= 1 && page <= totalPages) {
+            currentPage = page;
+            renderPage(currentPage);
+            renderPagination();
+
+            // optional: scroll ke atas
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        });
+
+        document.addEventListener("DOMContentLoaded", loadVideosFromJson);
+      </script>
+
+      <!-- ====== Pagination (static placeholder) ====== -->
       <nav
-        id="pager"
-        class="hidden mt-8 flex items-center justify-center gap-2"
+        id="paginationNav"
+        class="mt-8 flex items-center justify-center gap-2"
         aria-label="Pagination"
       ></nav>
 
-      <!-- Footer -->
-      <footer class="mt-10 text-center text-gray-400 text-sm">
-        <div class="mb-2">
-          Copyright © <span id="year"></span> TRUE DOMAIN PRIVACY, LLC
-        </div>
-        <div class="space-x-4">
-          <a href="#" class="hover:text-white transition">Terms of Service</a>
-          <a href="#" id="reportAbuse" class="hover:text-white transition"
-            >Report Abuse</a
+      <!-- ====== FOOTER ====== -->
+      <footer class="mt-12">
+        <div
+          class="h-px bg-gradient-to-r from-transparent via-cyan/70 to-transparent opacity-80"
+        ></div>
+
+        <div class="mx-auto max-w-6xl px-4">
+          <div class="py-8 md:py-10 grid gap-8 md:grid-cols-12">
+            <div class="md:col-span-5">
+              <div class="flex items-center gap-3">
+                <img
+                  src="/assets/logo.png"
+                  alt="PopsHd logo"
+                  class="h-9 w-9 rounded-xl ring-1 ring-cyan/20 bg-[#2c333b] object-contain p-1.5"
+                  loading="lazy"
+                  decoding="async"
+                  width="72"
+                  height="72"
+                />
+                <div class="text-lg font-semibold text-paper">PopsHd</div>
+              </div>
+              <p class="mt-2 text-[13px] leading-6 text-paper/70">
+                Simple, fast &amp; clean streaming. Videos are hosted by
+                third-party services.
+              </p>
+
+              <details class="mt-3">
+                <summary
+                  class="text-[12px] uppercase tracking-wider text-paper/50 cursor-pointer"
+                >
+                  About / Keywords (18+)
+                </summary>
+                <div class="mt-2 text-[12.5px] leading-relaxed text-paper/65">
+                  Streaming &amp; download
+                  <strong class="text-paper">bokep indo viral</strong>.
+                  doodstream, yang lagi viral, videy, vcs, Open BO, Mahasiswi
+                  18+, Masturbasi 18+, SMA, JAV Jepang 18+, Barat 18+, prank
+                  ojol bokeb, Skandal Dewasa 18+.
+                  <meta
+                    itemprop="about"
+                    content="Nikmati koleksi video bokep Indo terbaru dan terpopuler. Temukan berbagai kategori menarik dan konten berkualitas tinggi dalam dunia bokep Indo."
+                  />
+                </div>
+              </details>
+            </div>
+
+            <nav
+              class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 text-[13px]"
+            >
+              <div>
+                <div class="text-paper font-semibold mb-2">Browse</div>
+                <ul class="space-y-2 text-paper/75">
+                  <li>
+                    <a class="hover:text-cyan" href="https://popshd.site/"
+                      >Home</a
+                    >
+                  </li>
+                  <li>
+                    <a class="hover:text-cyan" href="#">Popular</a>
+                  </li>
+                  <li>
+                    <a class="hover:text-cyan" href="#">JAV</a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <div class="text-paper font-semibold mb-2">Info</div>
+                <ul class="space-y-2 text-paper/75">
+                  <li>
+                    <a
+                      class="hover:text-cyan"
+                      href="https://www.effectivegatecpm.com/kb6hfp9g8?key=565cc3779ba56130635075a88e4a12dc"
+                      target="_blank"
+                      rel="noopener nofollow"
+                      id="reportAbuseFoot"
+                      >Report Abuse / DMCA</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="hover:text-cyan"
+                      href="https://myaff.pages.dev/"
+                      target="_blank"
+                      rel="noopener nofollow"
+                      >Terms</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="hover:text-cyan"
+                      href="https://myaff.pages.dev/"
+                      target="_blank"
+                      rel="noopener nofollow"
+                      >Privacy</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <div class="text-paper font-semibold mb-2">Notice</div>
+                <ul class="space-y-2 text-paper/75">
+                  <li class="flex items-center gap-2">
+                    <i
+                      class="fa-solid fa-triangle-exclamation text-cyan/80 text-[12px]"
+                    ></i>
+                    <span>18+ Only</span>
+                  </li>
+                  <li>Third-party embeds only.</li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+
+          <div
+            class="py-4 border-t border-line/70 text-[12px] text-paper/60 flex flex-col sm:flex-row items-center justify-between gap-2"
           >
+            <div>
+              © <span id="year">2025</span> PopsHd. All rights reserved.
+            </div>
+            <div id="histats_counter"></div>
+            <div class="flex items-center gap-3">
+              <a
+                class="hover:text-cyan"
+                href="https://www.effectivegatecpm.com/kb6hfp9g8?key=565cc3779ba56130635075a88e4a12dc"
+                target="_blank"
+                rel="noopener nofollow"
+                id="reportAbuseFoot2"
+                >Report Abuse / DMCA</a
+              >
+              <span aria-hidden="true" class="opacity-30">•</span>
+              <a
+                class="hover:text-cyan"
+                href="https://myaff.pages.dev/"
+                target="_blank"
+                rel="noopener nofollow"
+                >Terms</a
+              >
+              <span aria-hidden="true" class="opacity-30">•</span>
+              <a
+                class="hover:text-cyan"
+                href="https://myaff.pages.dev/"
+                target="_blank"
+                rel="noopener nofollow"
+                >Privacy</a
+              >
+            </div>
+          </div>
         </div>
       </footer>
-    </div>
+    </main>
 
+    <!-- ====== Small helpers ====== -->
     <script>
-      // ===== Utils =====
-      const el = (sel) => document.querySelector(sel);
-      const esc = (s) => String(s ?? "");
-      const isHttp = (u) => /^https?:\/\//i.test(String(u));
-      const placeholder = "https://via.placeholder.com/640x360?text=No+Image";
-      const params = () => new URLSearchParams(location.search);
-      const setParams = (obj) => {
-        const p = new URLSearchParams(location.search);
-        Object.entries(obj).forEach(([k, v]) => {
-          if (v === null || v === undefined || String(v).trim() === "")
-            p.delete(k);
-          else p.set(k, v);
-        });
-        history.replaceState(null, "", `${location.pathname}?${p.toString()}`);
-      };
-      const numberWithDots = (n) =>
-        isNaN(n) ? "0" : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-      // ===== State =====
-      let allResults = []; // full data
-      let filtered = []; // after search
-      let view = "grid"; // grid | list
-      let q = ""; // query
-      let sort = "new"; // new | popular | az
-      let perPage = 12; // 12/18/24/36
-      let page = 1; // current page
-
-      // ===== DOM Refs =====
-      const $skeleton = el("#skeleton");
-      const $gridView = el("#gridView");
-      const $listView = el("#listView");
-      const $grid = el("#grid");
-      const $list = el("#list");
-      const $empty = el("#empty");
-      const $pager = el("#pager");
-      const $alert = el("#alert");
-      const $totalCount = el("#totalCount");
-
-      const $sf = el("#searchForm");
-      const $sf_q = el("#sf_q");
-      const $sf_per = el("#sf_per_page");
-      const $sf_sort = el("#sf_sort");
-      const $sf_view = el("#sf_view");
-      const $cf = el("#controlForm");
-      const $cf_q = el("#cf_q");
-      const $cf_page = el("#cf_page");
-      const $cf_per = el("#cf_per_page");
-      const $cf_sort = el("#cf_sort");
-      const $cf_view = el("#cf_view");
-
-      const $btnGrid = el("#btnGrid");
-      const $btnList = el("#btnList");
-
-      // ===== Skeleton render =====
-      (() => {
-        const wrap = $skeleton;
-        const tpl = el("#skeleton-card").content;
-        for (let i = 0; i < 6; i++) wrap.appendChild(tpl.cloneNode(true));
+      (function () {
+        var y = document.getElementById("year");
+        if (y) y.textContent = new Date().getFullYear();
       })();
-
-      // ===== Load & init =====
-      async function load() {
-        // read params
-        const p = params();
-        q = esc(p.get("q") || "");
-        sort = ["new", "popular", "az"].includes(p.get("sort"))
-          ? p.get("sort")
-          : "new";
-        view = ["grid", "list"].includes(p.get("view"))
-          ? p.get("view")
-          : "grid";
-        perPage = [12, 18, 24, 36].includes(parseInt(p.get("per_page")))
-          ? parseInt(p.get("per_page"))
-          : 12;
-        page = Math.max(1, parseInt(p.get("page") || "1"));
-
-        // sync forms/buttons
-        $sf_q.value = q;
-        $sf_sort.value = sort;
-        $sf_per.value = perPage;
-        $sf_view.value = view;
-        $cf_q.value = q;
-        $cf_sort.value = sort;
-        $cf_per.value = perPage;
-        $cf_view.value = view;
-        $cf_page.value = page;
-        applyViewButtons();
-
-        try {
-          const res = await fetch("/pushdb/db_clean.json", {
-            headers: { Accept: "application/json" },
-          });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const data = await res.json();
-          const results = Array.isArray(data?.results) ? data.results : [];
-
-          $skeleton.classList.add("hidden");
-          if (!results.length) {
-            $empty.classList.remove("hidden");
-            return;
-          }
-          allResults = results;
-          $totalCount.textContent = numberWithDots(allResults.length);
-
-          applyFilterSortPaginate();
-        } catch (err) {
-          $skeleton.classList.add("hidden");
-          $alert.textContent = `Gagal memuat data: ${err.message || err}`;
-          $alert.classList.remove("hidden");
-        }
-      }
-
-      function applyFilterSortPaginate() {
-        // filter by query: folder name OR first file title
-        const ql = q.trim().toLowerCase();
-        filtered = allResults.filter((f) => {
-          const name = esc(f?.name).toLowerCase();
-          const firstTitle = esc(f?.files?.[0]?.title || "").toLowerCase();
-          return !ql || name.includes(ql) || firstTitle.includes(ql);
-        });
-
-        // sort
-        if (sort === "popular") {
-          filtered.sort((a, b) => (b?.total || 0) - (a?.total || 0));
-        } else if (sort === "az") {
-          filtered.sort((a, b) => esc(a?.name).localeCompare(esc(b?.name)));
-        } // 'new' = original order
-
-        // clamp page
-        const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
-        if (page > totalPages) page = totalPages;
-
-        // render
-        render();
-        // persist params to URL
-        setParams({ q, sort, view, per_page: perPage, page });
-      }
-
-      function applyViewButtons() {
-        if (view === "grid") {
-          $btnGrid.classList.add("bg-gray-800", "border-gray-700");
-          $btnList.classList.remove("bg-gray-800");
-        } else {
-          $btnList.classList.add("bg-gray-800", "border-gray-700");
-          $btnGrid.classList.remove("bg-gray-800");
-        }
-      }
-
-      function render() {
-        // handle empty
-        if (!filtered.length) {
-          $gridView.classList.add("hidden");
-          $listView.classList.add("hidden");
-          $pager.classList.add("hidden");
-          $empty.classList.remove("hidden");
-          return;
-        }
-        $empty.classList.add("hidden");
-
-        const total = filtered.length;
-        const totalPages = Math.max(1, Math.ceil(total / perPage));
-        const startIdx = (page - 1) * perPage;
-        const endIdx = Math.min(startIdx + perPage, total);
-        const slice = filtered.slice(startIdx, endIdx);
-
-        // grid render
-        $grid.innerHTML = "";
-        slice.forEach((folder) => {
-          const name = esc(folder?.name || "Untitled");
-          const dirId = esc(folder?.dir_id || "");
-          const totalVideos = Number(folder?.total || 0);
-          const first = folder?.files?.[0] || null;
-          const thumb = isHttp(first?.thumb) ? first.thumb : placeholder;
-
-          const a = document.createElement("a");
-          a.href = `/f/${encodeURIComponent(dirId)}`;
-          a.className =
-            "folder-card rounded-2xl overflow-hidden ring-1 ring-gray-800 bg-gray-900";
-          a.innerHTML = `
-            <div class="relative">
-              <div class="thumb-wrap">
-                <img src="${esc(
-                  thumb
-                )}" alt="${name}" loading="lazy" referrerpolicy="no-referrer">
-              </div>
-              <div class="badge absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-1 text-xs ring-1 ring-black/40">
-                <i class="fa-regular fa-folder"></i>
-                <span>${numberWithDots(totalVideos)} videos</span>
-              </div>
-              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent p-3">
-                <h3 class="line-clamp-1 text-sm font-semibold text-white">${name}</h3>
-              </div>
-            </div>`;
-          $grid.appendChild(a);
-        });
-
-        // list render
-        $list.innerHTML = "";
-        slice.forEach((folder) => {
-          const name = esc(folder?.name || "Untitled");
-          const dirId = esc(folder?.dir_id || "");
-          const totalVideos = Number(folder?.total || 0);
-          const first = folder?.files?.[0] || null;
-          const thumb = isHttp(first?.thumb) ? first.thumb : placeholder;
-          const href = `/f/${encodeURIComponent(dirId)}`;
-          const li = document.createElement("li");
-          li.className =
-            "grid grid-cols-12 items-center px-4 py-3 hover:bg-gray-900/60";
-          li.innerHTML = `
-            <div class="col-span-12 sm:col-span-7 flex items-center gap-3">
-              <a href="${href}" class="group relative block h-16 w-28 overflow-hidden rounded-lg ring-1 ring-gray-800">
-                <img src="${esc(thumb)}"
-                     class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" alt="Thumbnail" loading="lazy">
-              </a>
-              <a href="${href}" class="text-sm font-medium text-white hover:underline line-clamp-2">${name}</a>
-            </div>
-            <div class="col-span-6 sm:col-span-2 mt-2 sm:mt-0 text-right text-sm">
-              ${numberWithDots(totalVideos)}
-            </div>
-            <div class="col-span-6 sm:col-span-3 mt-2 sm:mt-0 text-right pr-2">
-              <a href="${href}" class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-3 py-1 text-sm hover:bg-gray-800">
-                <span>Open</span>
-              </a>
-            </div>`;
-          $list.appendChild(li);
-        });
-
-        // toggle views
-        if (view === "grid") {
-          $gridView.classList.remove("hidden");
-          $listView.classList.add("hidden");
-        } else {
-          $listView.classList.remove("hidden");
-          $gridView.classList.add("hidden");
-        }
-
-        // pagination render
-        $pager.innerHTML = "";
-        $pager.classList.remove("hidden");
-
-        // Prev
-        const prev = document.createElement("a");
-        prev.className =
-          "btn btn-outline" +
-          (page <= 1 ? " pointer-events-none opacity-50" : "");
-        prev.href = page > 1 ? setHref({ page: page - 1 }) : "#";
-        prev.textContent = "Prev";
-        $pager.appendChild(prev);
-
-        // numbers with window & ellipsis
-        const windowN = 1; // ±1
-        const pages = new Set(
-          [1, page - 1, page, page + 1, totalPages].filter(
-            (n) => n >= 1 && n <= totalPages
-          )
-        );
-        const arr = [...pages].sort((a, b) => a - b);
-        for (let i = 0; i < arr.length; i++) {
-          const n = arr[i];
-          if (i > 0 && n - arr[i - 1] > 1) {
-            const span = document.createElement("span");
-            span.className = "px-2 text-gray-500";
-            span.textContent = "…";
-            $pager.appendChild(span);
-          }
-          const a = document.createElement("a");
-          a.className =
-            "btn btn-outline " + (n === page ? "bg-gray-800 text-white" : "");
-          a.href = setHref({ page: n });
-          a.textContent = n;
-          $pager.appendChild(a);
-        }
-
-        // Next
-        const next = document.createElement("a");
-        next.className =
-          "btn btn-outline" +
-          (page >= totalPages ? " pointer-events-none opacity-50" : "");
-        next.href = page < totalPages ? setHref({ page: page + 1 }) : "#";
-        next.textContent = "Next";
-        $pager.appendChild(next);
-      }
-
-      function setHref(overrides) {
-        const p = new URLSearchParams(location.search);
-        Object.entries(overrides).forEach(([k, v]) => p.set(k, v));
-        return `${location.pathname}?${p.toString()}`;
-      }
-
-      // ===== Events =====
-      $sf.addEventListener("submit", (e) => {
-        e.preventDefault();
-        q = $sf_q.value;
-        page = 1;
-        sort = $sf_sort.value;
-        perPage = parseInt($sf_per.value) || 12;
-        view = $sf_view.value;
-        applyViewButtons();
-        applyFilterSortPaginate();
-      });
-      $cf.addEventListener("submit", (e) => {
-        e.preventDefault();
-        sort = $cf_sort.value;
-        perPage = parseInt($cf_per.value) || 12;
-        view = $cf_view.value;
-        page = Math.max(1, parseInt($cf_page.value) || 1);
-        applyViewButtons();
-        applyFilterSortPaginate();
-      });
-
-      $btnGrid.addEventListener("click", (e) => {
-        e.preventDefault();
-        view = "grid";
-        applyViewButtons();
-        applyFilterSortPaginate();
-      });
-      $btnList.addEventListener("click", (e) => {
-        e.preventDefault();
-        view = "list";
-        applyViewButtons();
-        applyFilterSortPaginate();
-      });
-
-      // init
-      document.getElementById("year").textContent = new Date().getFullYear();
-      load();
     </script>
 
-    <!-- Ads -->
-    <script
-      type="text/javascript"
-      src="//pl27085711.profitableratecpm.com/88/c3/68/88c368a42b45fdc2764cd17de26f987a.js"
-    ></script>
-    <script type="text/javascript">
-      $(function () {
-        $("body").addClass("xepo_ads");
-        $(document).on("click", ".xepo_ads", function () {
-          $(this).removeClass("xepo_ads");
-          window.open(
-            "https://www.profitableratecpm.com/kb6hfp9g8?key=565cc3779ba56130635075a88e4a12dc",
-            "_blank"
-          );
-        });
-      });
+    <!-- ====== Popup target expose (tanpa limiter) ====== -->
+    <script>
+      window.popupPlayerUrl =
+        window.popupPlayerUrl || "https://myaff.pages.dev/";
     </script>
-    <!-- Histats.com  START  (aync)-->
+
+    <!-- Histats.com  START  (async) -->
     <script type="text/javascript">
       var _Hasync = _Hasync || [];
       _Hasync.push(["Histats.start", "1,4961487,4,0,0,0,00010000"]);
@@ -697,5 +953,13 @@
       /></a>
     </noscript>
     <!-- Histats.com  END  -->
+
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"version":"2024.11.0","token":"f701475a93e341a79912ae810ceeab21","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
