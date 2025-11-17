@@ -1,3 +1,9 @@
 {
-  "rewrites": [{ "source": "/v/:code", "destination": "/video.html?c=:code" }]
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/v/:code",
+      "destination": "/video.html?c=:code"
+    }
+  ]
 }
