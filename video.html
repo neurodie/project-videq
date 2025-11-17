@@ -1305,7 +1305,8 @@
       }
 
       function buildWatchUrl(code) {
-        return `${location.origin}${location.pathname}/${encodeURIComponent(
+        let url = 'https://popshd.site/v/'
+        return `${url}${encodeURIComponent(
           code
         )}`;
       }
