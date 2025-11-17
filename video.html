@@ -740,23 +740,14 @@
 
         <div class="video-wrapper">
           <!-- Player untuk MP4 (Video.js) -->
-          <video
-            id="video-player"
-            class="video-js vjs-default-skin"
-            controls
-            preload="metadata"
-            poster=""
-            playsinline
-            data-setup='{
-        "fluid":true,
-        "aspectRatio":"16:9",
-        "playbackRates":[0.5,1,1.5,2],
-        "controlBar":{"volumePanel":{"inline":false},"pictureInPictureToggle":true}
-      }'
-          >
-            <source id="videoSource" src="" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+         <video
+          id="video-player"
+          class="video-js vjs-default-skin"
+          playsinline
+        >
+          <!-- source akan di-set lewat video.js, tidak perlu <source> statis -->
+        </video>
+
 
           <!-- Player untuk NON-MP4 (iframe embed) -->
           <iframe
@@ -873,7 +864,7 @@
             <div class="md:col-span-5">
               <div class="flex items-center gap-3">
                 <img
-                  src="assets/logo.png"
+                  src="/assets/logo.png"
                   alt="popshd logo"
                   class="h-9 w-9 rounded-xl ring-1 ring-cyan/20 bg-[#2c333b] object-contain p-1.5"
                   loading="lazy"
@@ -1156,47 +1147,72 @@
 
       // Setup player untuk MP4 (Video.js)
       function setupMp4Player(videoId, videoUrl, posterUrl) {
-        const videoEl = document.getElementById("video-player");
-        const iframeEl = document.getElementById("embed-player");
-        const errBox = document.getElementById("video-error");
+      const videoEl = document.getElementById("video-player");
+      const iframeEl = document.getElementById("embed-player");
+      const errBox = document.getElementById("video-error");
 
-        if (!videoEl || !window.videojs) return;
+      if (!videoEl || !window.videojs) return;
 
-        // Tampil video.js, sembunyikan iframe
-        videoEl.classList.remove("hidden");
-        if (iframeEl) iframeEl.classList.add("hidden");
+      // Tampil video.js, sembunyikan iframe embed
+      videoEl.classList.remove("hidden");
+      if (iframeEl) iframeEl.classList.add("hidden");
 
-        const player = window.videojs(videoEl, { errorDisplay: false });
+      // Jika sebelumnya sudah pernah dibuat, pakai instance lama
+      let player;
+      if (window._vjsPlayer) {
+        player = window._vjsPlayer;
+      } else {
+        // INIT RESMI Video.js (semua opsi taruh di sini)
+        player = window.videojs(videoEl, {
+          controls: true,
+          preload: "metadata",
+          fluid: true,
+          aspectRatio: "16:9",
+          playbackRates: [0.5, 1, 1.5, 2],
+          controlBar: {
+            volumePanel: { inline: false },
+            pictureInPictureToggle: true,
+          },
+          errorDisplay: false,
+        });
         window._vjsPlayer = player;
-
-        if (videoUrl) {
-          player.src({ src: videoUrl, type: "video/mp4" });
-        }
-        if (posterUrl) {
-          try {
-            player.poster(posterUrl);
-          } catch (e) {
-            videoEl.poster = posterUrl;
-          }
-        }
-
-        // Error / sukses
-        player.on("error", () => {
-          if (errBox) errBox.classList.remove("hidden");
-          console.error("Video.js error:", player.error());
-        });
-
-        player.on("loadeddata", () => {
-          if (errBox) errBox.classList.add("hidden");
-        });
-
-        // Popup iklan sekali saat first play
-        ensureOnePlayerAd(videoId, (show) => {
-          player.one("play", () => {
-            show();
-          });
-        });
       }
+
+      // Set source & poster MP4
+      if (videoUrl) {
+        player.src({ src: videoUrl, type: "video/mp4" });
+      }
+      if (posterUrl) {
+        try {
+          player.poster(posterUrl);
+        } catch (e) {
+          videoEl.poster = posterUrl;
+        }
+      }
+
+      // Sembunyikan error ketika sudah load
+      if (errBox) errBox.classList.add("hidden");
+
+      player.off("error");
+      player.on("error", () => {
+        if (errBox) errBox.classList.remove("hidden");
+        console.error("Video.js error:", player.error());
+      });
+
+      // Debug (opsional): cek currentTime & duration
+      player.off("timeupdate");
+      player.on("timeupdate", () => {
+        // console.log("ct/dur:", player.currentTime(), "/", player.duration());
+      });
+
+      // Popup iklan sekali saat first play
+      ensureOnePlayerAd(videoId, (show) => {
+        player.one("play", () => {
+          show();
+        });
+      });
+    }
+
 
       // Setup player untuk NON-MP4 (iframe embed)
       function setupEmbedPlayer(videoId, videoUrl, posterUrl) {
