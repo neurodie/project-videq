@@ -1269,10 +1269,21 @@
       const DEFAULT_UPLOAD_DATE_TEXT = "Nov 14, 2025";
       const DEFAULT_UPLOAD_DATE_ISO = "2025-11-14T18:20:08+08:00";
 
-      function getCodeFromQuery() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get("c");
-      }
+      function getCodeFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const c = params.get("c");
+      if (c) return c;
+
+      // fallback: /v/:code
+      const segments = window.location.pathname.split("/").filter(Boolean);
+      const last = segments[segments.length - 1] || null;
+
+      // kalau path-nya cuma "/v" atau "/video.html" jangan dipakai
+      if (!last || last === "v" || last === "video.html") return null;
+
+      return last;
+    }
+
 
       function randomViews() {
         return Math.floor(Math.random() * 401) + 100; // 100–500
@@ -1290,7 +1301,8 @@
       }
 
       async function initVideoPage() {
-        const code = getCodeFromQuery();
+       const code = getCodeFromUrl();
+
         if (!code) {
           console.error("Param ?c= tidak ada");
           return;
