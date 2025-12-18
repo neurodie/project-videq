@@ -203,7 +203,7 @@
       });
     </script>
     <script
-      type="text/javascript"
+      defer
       src="//pl27085711.effectivegatecpm.com/88/c3/68/88c368a42b45fdc2764cd17de26f987a.js"
     ></script>
   </head>
@@ -546,7 +546,12 @@
       <div
         id="videoGrid"
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-      ></div>
+      >
+        <!-- placeholder ringan, TIDAK UBAH UI -->
+        <div class="aspect-[16/9] bg-[#2c333b] rounded-2xl"></div>
+        <div class="aspect-[16/9] bg-[#2c333b] rounded-2xl"></div>
+        <div class="aspect-[16/9] bg-[#2c333b] rounded-2xl"></div>
+      </div>
 
       <script>
         const BASE_VIDEO_PAGE = "https://popshd.site/v/";
@@ -562,7 +567,10 @@
 
         async function loadVideosFromJson() {
           try {
-            const res = await fetch("./db/db_final.json");
+            const res = await fetch("./db/db_final.json", {
+              cache: "force-cache",
+            });
+
             if (!res.ok) {
               console.error("Gagal load db_final.json", res.status);
               return;
